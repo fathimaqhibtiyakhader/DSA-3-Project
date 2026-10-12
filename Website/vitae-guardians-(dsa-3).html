@@ -1,0 +1,2831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vitae Guardians — Newborn Genetic Screening Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Sora:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================================
+   VITAE GUARDIANS — CYBER-BIOMEDICAL DESIGN SYSTEM (Deep Navy / Neon Glow)
+   ========================================================================== */
+:root {
+  --bg-base: #071827;
+  --bg-deep: #0b2230;
+  --bg-surface: #103046;
+  --bg-card: rgba(16, 48, 70, 0.80);
+  --inset-bg: rgba(3, 10, 22, 0.55);
+  --bg-card-hover: rgba(20, 62, 90, 0.74);
+  --bg-glass: rgba(12, 40, 58, 0.62);
+
+  --cyan: #1fe6e6;
+  --cyan-dim: rgba(31, 230, 230, 0.18);
+  --cyan-glow: 0 0 22px rgba(31, 230, 230, 0.45);
+
+  --teal: #22c9b8;
+  --teal-dim: rgba(34, 201, 184, 0.18);
+  --teal-glow: 0 0 22px rgba(34, 201, 184, 0.45);
+
+  --violet: #6f7bff;
+  --indigo: #5061e0;
+  --purple-glow: 0 0 22px rgba(111, 123, 255, 0.45);
+
+  --text-main: #f8fafc;
+  --text-soft: #dbe6f2;
+  --text-muted: #93a8c9;
+  --text-dim: #6c81a6;
+
+  --line: rgba(31, 230, 230, 0.18);
+  --line-soft: rgba(255, 255, 255, 0.10);
+
+  /* Risk Semantics */
+  --risk-high: #ff6768;
+  --risk-high-bg: rgba(255, 103, 104, 0.16);
+  --risk-high-border: rgba(255, 103, 104, 0.5);
+
+  --risk-med: #ffb648;
+  --risk-med-bg: rgba(255, 182, 72, 0.16);
+  --risk-med-border: rgba(255, 182, 72, 0.5);
+
+  --risk-low: #2fe0a0;
+  --risk-low-bg: rgba(47, 224, 160, 0.16);
+  --risk-low-border: rgba(47, 224, 160, 0.5);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+
+  --shadow-card: 0 10px 30px -10px rgba(2, 10, 20, 0.55), 0 0 0 1px var(--line);
+  --shadow-lg: 0 20px 40px -15px rgba(2, 10, 20, 0.7), 0 0 34px rgba(31, 230, 230, 0.2);
+
+  --font-display: 'Cinzel', Georgia, 'Times New Roman', serif;
+  --font-body: 'Sora', -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  /* Sidebar & topbar keep a permanently dark surface in both day and
+     night mode, so their text stays fixed-light regardless of theme. */
+  --nav-text-main: #f8fafc;
+  --nav-text-soft: #cbd5e1;
+  --nav-text-muted: #8ca0c2;
+  --nav-text-dim: #64748b;
+}
+
+/* ==========================================================================
+   DAY MODE — bright "Winter Chill" toned palette, same tokens re-mapped
+   ========================================================================== */
+body.day-mode {
+  --bg-base: #eef6fb;
+  --bg-deep: #e2eef5;
+  --bg-surface: #ffffff;
+  --bg-card: rgba(255, 255, 255, 0.86);
+  --inset-bg: rgba(11, 34, 48, 0.05);
+  --bg-card-hover: rgba(255, 255, 255, 0.92);
+  --bg-glass: rgba(255, 255, 255, 0.62);
+
+  --cyan: #00b3b3;
+  --cyan-dim: rgba(0, 179, 179, 0.14);
+  --cyan-glow: 0 0 20px rgba(0, 179, 179, 0.25);
+
+  --teal: #0e9c8c;
+  --teal-dim: rgba(14, 156, 140, 0.14);
+  --teal-glow: 0 0 20px rgba(14, 156, 140, 0.25);
+
+  --violet: #5b57e0;
+  --indigo: #4a46d0;
+  --purple-glow: 0 0 20px rgba(91, 87, 224, 0.25);
+
+  --text-main: #0b2230;
+  --text-soft: #33526b;
+  --text-muted: #5c7a91;
+  --text-dim: #85a0b3;
+
+  --line: rgba(11, 34, 48, 0.14);
+  --line-soft: rgba(11, 34, 48, 0.08);
+
+  --risk-high: #d6304a;
+  --risk-high-bg: rgba(214, 48, 74, 0.10);
+  --risk-high-border: rgba(214, 48, 74, 0.35);
+
+  --risk-med: #b9790c;
+  --risk-med-bg: rgba(185, 121, 12, 0.12);
+  --risk-med-border: rgba(185, 121, 12, 0.35);
+
+  --risk-low: #128a5e;
+  --risk-low-bg: rgba(18, 138, 94, 0.12);
+  --risk-low-border: rgba(18, 138, 94, 0.35);
+
+  --shadow-card: 0 10px 26px -10px rgba(20, 45, 65, 0.14), 0 0 0 1px var(--line);
+  --shadow-lg: 0 20px 40px -15px rgba(20, 45, 65, 0.22), 0 0 30px rgba(0, 179, 179, 0.12);
+}
+body.day-mode .ambient-blob { opacity: 0.4; filter: blur(100px); }
+body.day-mode #bg-canvas { opacity: 0.35; }
+body.day-mode ::selection { background: var(--cyan); color: #fff; }
+
+/* ============ Theme toggle switch ============ */
+.theme-toggle {
+  position: fixed; top: 80px; right: 18px; z-index: 500;
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px; border-radius: 999px;
+  background: var(--bg-glass); border: 1px solid var(--line);
+  box-shadow: var(--shadow-card);
+}
+.theme-toggle button {
+  display: flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border-radius: 50%; border: none;
+  background: transparent; color: var(--text-muted); cursor: pointer;
+  transition: background .2s ease, color .2s ease;
+}
+.theme-toggle button svg { width: 17px; height: 17px; }
+.theme-toggle button.active { background: linear-gradient(135deg, var(--cyan), var(--violet)); color: #020813; }
+@media (max-width: 900px) { .theme-toggle { top: 10px; right: 10px; } }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { min-height: 100vh; background: var(--bg-base); color: var(--text-main); font-family: var(--font-body); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+/* Scrollbars */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb { background: rgba(31, 230, 230, 0.25); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--cyan); }
+
+::selection { background: var(--cyan); color: #020813; }
+
+/* Canvas Background for Floating DNA & Particles */
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.65;
+}
+
+/* Glowing background blobs: cheap radial gradients (no blur filter, no animation => no per-frame repaint) */
+.ambient-blobs { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.ambient-blob { position: absolute; border-radius: 50%; opacity: .30; }
+.blob-1 { width: 700px; height: 700px; top: -250px; left: -220px; background: radial-gradient(circle, var(--cyan), transparent 68%); }
+.blob-2 { width: 650px; height: 650px; bottom: -250px; right: -200px; background: radial-gradient(circle, var(--violet), transparent 68%); }
+.blob-3 { width: 500px; height: 500px; top: 38%; left: 38%; background: radial-gradient(circle, var(--teal), transparent 68%); opacity: .18; }
+/* Typography */
+h1, h2, h3, h4, h5 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.02em; color: var(--text-main); }
+p { color: var(--text-soft); line-height: 1.6; }
+.mono { font-family: var(--font-mono); }
+
+/* View Visibility */
+.view { display: none; position: relative; z-index: 1; }
+.view.active { display: block; animation: fadeIn .32s cubic-bezier(0.16, 1, 0.3, 1); }
+.hidden { display: none !important; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 10px 18px; border-radius: var(--radius-md); font-weight: 600; font-size: 13.5px;
+  cursor: pointer; border: 1px solid transparent; transition: all .2s ease;
+  font-family: var(--font-body); text-decoration: none; position: relative; overflow: hidden;
+}
+.btn:active { transform: scale(0.97); }
+.btn-cyan {
+  background: linear-gradient(135deg, #1fe6e6, #00b4d8);
+  color: #020813; font-weight: 700; box-shadow: 0 4px 20px rgba(31, 230, 230, 0.35);
+}
+.btn-cyan:hover { box-shadow: 0 6px 26px rgba(31, 230, 230, 0.55); transform: translateY(-1px); }
+.btn-teal {
+  background: linear-gradient(135deg, #22c9b8, #00a887);
+  color: #020813; font-weight: 700; box-shadow: 0 4px 20px rgba(34, 201, 184, 0.3);
+}
+.btn-teal:hover { box-shadow: 0 6px 26px rgba(34, 201, 184, 0.5); transform: translateY(-1px); }
+.btn-violet {
+  background: linear-gradient(135deg, #6f7bff, #5061e0);
+  color: #fff; box-shadow: 0 4px 20px rgba(111, 123, 255, 0.35);
+}
+.btn-violet:hover { box-shadow: 0 6px 26px rgba(111, 123, 255, 0.55); transform: translateY(-1px); }
+.btn-glass {
+  background: rgba(255, 255, 255, 0.05); color: var(--text-main);
+  border: 1px solid var(--line);
+}
+.btn-glass:hover { background: rgba(31, 230, 230, 0.12); border-color: var(--cyan); color: var(--text-main); }
+.topbar .btn-glass, .sidebar .btn-glass { color: var(--nav-text-main); }
+.topbar .btn-glass:hover, .sidebar .btn-glass:hover { color: var(--nav-text-main); }
+.btn-danger {
+  background: var(--risk-high-bg); color: var(--risk-high); border: 1px solid var(--risk-high-border);
+}
+.btn-danger:hover { background: rgba(255, 103, 104, 0.25); }
+.btn-sm { padding: 6px 12px; font-size: 12px; border-radius: var(--radius-sm); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none !important; }
+
+/* DNA Scanner Marker Panel Buttons */
+.scan-panel-btn {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.scan-panel-btn:hover {
+  background: rgba(31, 230, 230, 0.12);
+  border-color: var(--cyan);
+  color: var(--text-main);
+}
+
+.scan-panel-btn.active {
+  background: linear-gradient(135deg, var(--cyan), #00b4d8);
+  border-color: var(--cyan);
+  color: #020813;
+  font-weight: 700;
+  box-shadow: 0 0 14px rgba(31, 230, 230, 0.35);
+}
+
+/* Cards & Glass Containers */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  box-shadow: var(--shadow-card);
+  transition: border-color .25s ease, box-shadow .25s ease;
+  position: relative;
+  overflow: hidden;
+}
+.card:hover {
+  border-color: rgba(31, 230, 230, 0.32);
+  box-shadow: 0 14px 36px -10px rgba(0, 0, 0, 0.7), 0 0 25px rgba(31, 230, 230, 0.12);
+}
+.card-glow-cyan::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+}
+.card-glow-violet::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--violet), transparent);
+}
+.card-glow-teal::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--teal), transparent);
+}
+
+/* Form inputs */
+label {
+  font-size: 11.5px; font-weight: 700; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 6px;
+}
+input, select, textarea {
+  width: 100%; padding: 11px 14px; border-radius: var(--radius-md);
+  border: 1px solid var(--line); background: rgba(5, 15, 30, 0.8);
+  color: var(--text-main); font-family: var(--font-body); font-size: 13.5px;
+  outline: none; transition: all .2s ease;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(31, 230, 230, 0.2);
+  background: rgba(7, 20, 40, 0.95);
+}
+.field { margin-bottom: 16px; }
+.hint { font-size: 12px; color: var(--text-muted); margin-top: 5px; }
+
+/* Grid Layouts */
+.grid { display: grid; gap: 20px; }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-2 { grid-template-columns: 1.4fr 1fr; }
+.grid-2-eq { grid-template-columns: 1fr 1fr; }
+@media (max-width: 1100px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: 1fr; }
+  .grid-2 { grid-template-columns: 1fr; }
+  .grid-2-eq { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .grid-4 { grid-template-columns: 1fr; }
+}
+
+/* Badges & Pills */
+.pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 3px 10px; border-radius: 99px; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em; font-family: var(--font-mono);
+}
+.pill-high { background: var(--risk-high-bg); color: var(--risk-high); border: 1px solid var(--risk-high-border); }
+.pill-med { background: var(--risk-med-bg); color: var(--risk-med); border: 1px solid var(--risk-med-border); }
+.pill-low { background: var(--risk-low-bg); color: var(--risk-low); border: 1px solid var(--risk-low-border); }
+.pill-cyan { background: var(--cyan-dim); color: var(--cyan); border: 1px solid rgba(31, 230, 230, 0.3); }
+.pill-violet { background: rgba(111, 123, 255, 0.16); color: #c9b6ff; border: 1px solid rgba(111, 123, 255, 0.35); }
+.pill-soft { background: rgba(255, 255, 255, 0.06); color: var(--text-soft); border: 1px solid var(--line-soft); }
+
+.dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
+.dot-high { background: var(--risk-high); box-shadow: 0 0 8px var(--risk-high); }
+.dot-med { background: var(--risk-med); box-shadow: 0 0 8px var(--risk-med); }
+.dot-low { background: var(--risk-low); box-shadow: 0 0 8px var(--risk-low); }
+
+/* Table Styles */
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+th {
+  text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em;
+  color: var(--text-muted); padding: 12px 14px; border-bottom: 1px solid var(--line); font-weight: 700;
+}
+td { padding: 13px 14px; border-bottom: 1px solid var(--line-soft); vertical-align: middle; color: var(--text-soft); }
+tr:hover td { background: rgba(31, 230, 230, 0.03); color: var(--text-main); }
+tr:last-child td { border-bottom: none; }
+
+/* App Shell (Sidebar + Main) */
+.shell { display: flex; min-height: 100vh; position: relative; z-index: 1; }
+.sidebar {
+  width: 260px; flex-shrink: 0; background: rgba(4, 12, 24, 0.97);
+  border-right: 1px solid var(--line); padding: 24px 16px; display: flex; flex-direction: column;
+  position: sticky; top: 0; height: 100vh;
+  color: var(--nav-text-soft);
+}
+.brand-box { display: flex; align-items: center; gap: 12px; padding: 0 8px 24px; border-bottom: 1px solid var(--line-soft); }
+.brand-logo {
+  width: 40px; height: 40px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 20px rgba(31, 230, 230, 0.4); flex-shrink: 0;
+}
+.brand-logo svg { width: 22px; height: 22px; color: #020813; }
+.brand-text h2 { font-size: 17px; font-weight: 800; letter-spacing: -0.02em; color: var(--nav-text-main); }
+.brand-text p { font-size: 10.5px; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; }
+
+.nav-section { margin-top: 20px; }
+.nav-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-dim); font-weight: 800; padding: 0 10px; margin-bottom: 6px; }
+.navlink {
+  display: flex; align-items: center; gap: 11px; padding: 10.5px 14px; border-radius: var(--radius-md);
+  color: var(--nav-text-soft); font-size: 13.5px; font-weight: 600; text-decoration: none;
+  transition: all .2s ease; margin-bottom: 4px; cursor: pointer; position: relative;
+}
+.navlink svg { width: 18px; height: 18px; color: var(--nav-text-muted); transition: all .2s ease; }
+.navlink:hover { background: rgba(31, 230, 230, 0.08); color: var(--nav-text-main); }
+.navlink:hover svg { color: var(--cyan); transform: translateX(2px); }
+.navlink.active {
+  background: linear-gradient(90deg, rgba(31, 230, 230, 0.18), rgba(31, 230, 230, 0.04));
+  color: var(--cyan); border: 1px solid rgba(31, 230, 230, 0.28);
+}
+.navlink.active svg { color: var(--cyan); }
+.navlink.active::before {
+  content: ""; position: absolute; left: -1px; top: 18%; bottom: 18%; width: 3px;
+  background: var(--cyan); border-radius: 0 4px 4px 0; box-shadow: 0 0 10px var(--cyan);
+}
+.nav-badge { margin-left: auto; font-size: 10px; padding: 2px 7px; border-radius: 99px; font-weight: 700; font-family: var(--font-mono); }
+
+.sidebar-footer {
+  margin-top: auto; padding: 14px 10px 0; border-top: 1px solid var(--line-soft);
+  font-size: 11px; color: var(--nav-text-dim); line-height: 1.5;
+}
+
+.main-content { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.topbar {
+  display: flex; align-items: center; justify-content: space-between; padding: 16px 36px;
+  background: rgba(4, 12, 24, 0.96); border-bottom: 1px solid var(--line);
+  position: sticky; top: 0; z-index: 100;
+  color: var(--nav-text-main);
+}
+.page-title h1 { font-size: 20px; font-weight: 700; display: flex; align-items: center; gap: 10px; color: var(--nav-text-main); }
+.page-title p { font-size: 12.5px; color: var(--nav-text-muted); margin-top: 2px; }
+
+.user-chip { display: flex; align-items: center; gap: 14px; }
+.user-avatar {
+  width: 38px; height: 38px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--cyan), var(--indigo));
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 14px; color: #020813; box-shadow: 0 0 14px rgba(31, 230, 230, 0.3);
+}
+
+.view-body { padding: 28px 36px 60px; max-width: 1400px; width: 100%; margin: 0 auto; }
+
+/* Stat Widgets */
+.stat-widget {
+  padding: 20px 22px;
+}
+.stat-widget .label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
+.stat-widget .value { font-family: var(--font-display); font-size: 32px; font-weight: 800; color: var(--text-main); margin: 6px 0 2px; }
+.stat-widget .subtext { font-size: 12px; color: var(--text-dim); }
+
+/* Genomics Visualizer */
+.dna-strip {
+  font-family: var(--font-mono); font-size: 12px; line-height: 1.8; word-break: break-all;
+  background: rgba(2, 8, 18, 0.95); color: var(--text-soft); padding: 18px;
+  border-radius: var(--radius-md); border: 1px solid var(--line); max-height: 260px; overflow-y: auto;
+}
+.base-a { color: #2fe0a0; font-weight: 600; }
+.base-c { color: #1fe6e6; font-weight: 600; }
+.base-g { color: #ffb648; font-weight: 600; }
+.base-t { color: #ff5c74; font-weight: 600; }
+
+mark.hit-variant {
+  background: rgba(255, 103, 104, 0.35); color: #fff; padding: 2px 4px;
+  border-radius: 4px; border: 1px solid var(--risk-high); font-weight: 700;
+  box-shadow: 0 0 12px rgba(255, 103, 104, 0.6);
+}
+mark.hit-carrier {
+  background: rgba(255, 182, 72, 0.35); color: #fff; padding: 2px 4px;
+  border-radius: 4px; border: 1px solid var(--risk-med); font-weight: 700;
+  box-shadow: 0 0 12px rgba(255, 182, 72, 0.6);
+}
+
+/* Modals */
+.modal-backdrop {
+  position: fixed; inset: 0; background: rgba(2, 8, 18, 0.8);
+  backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center;
+  z-index: 1000; padding: 20px; animation: fadeIn .2s ease;
+}
+.modal {
+  background: var(--bg-surface); border: 1px solid var(--line); border-radius: var(--radius-xl);
+  padding: 30px; max-width: 580px; width: 100%; box-shadow: var(--shadow-lg);
+  max-height: 90vh; overflow-y: auto; position: relative;
+}
+
+/* Toast Root */
+.toast-root { position: fixed; bottom: 24px; right: 24px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; }
+.toast {
+  background: rgba(7, 20, 40, 0.95); border: 1px solid var(--cyan); color: #fff;
+  padding: 13px 20px; border-radius: var(--radius-md); font-size: 13.5px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(31, 230, 230, 0.3);
+  display: flex; align-items: center; gap: 10px; animation: toastIn .25s ease;
+}
+.toast.toast-high { border-color: var(--risk-high); box-shadow: 0 0 20px rgba(255, 103, 104, 0.4); }
+.toast.toast-med { border-color: var(--risk-med); box-shadow: 0 0 20px rgba(255, 182, 72, 0.4); }
+@keyframes toastIn { from { transform: translateY(15px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+/* Hero Banner */
+.hero-banner {
+  background: linear-gradient(135deg, rgba(31, 230, 230, 0.12), rgba(111, 123, 255, 0.12));
+  border: 1px solid rgba(31, 230, 230, 0.25); border-radius: var(--radius-xl);
+  padding: 32px 36px; position: relative; overflow: hidden; margin-bottom: 24px;
+}
+.hero-banner::after {
+  content: ""; position: absolute; right: -80px; top: -80px; width: 300px; height: 300px;
+  border-radius: 50%; background: radial-gradient(circle, rgba(31, 230, 230, 0.18), transparent 70%);
+}
+
+/* Doctor Demo Card in Auth */
+.doc-demo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; }
+@media (max-width: 768px) { .doc-demo-grid { grid-template-columns: 1fr; } }
+.doc-demo-card {
+  padding: 10px 12px; border-radius: var(--radius-md); border: 1px solid var(--line);
+  background: rgba(6, 17, 34, 0.6); cursor: pointer; transition: all .2s ease;
+}
+.doc-demo-card:hover {
+  background: rgba(31, 230, 230, 0.12); border-color: var(--cyan); transform: translateY(-2px);
+}
+.doc-demo-avatar {
+  width: 28px; height: 28px; border-radius: 8px; font-size: 11px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; background: var(--cyan); color: #020813;
+}
+
+/* Print Stylesheet for Clinician Diagnostic Reports */
+@media print {
+  body { background: #fff !important; color: #000 !important; }
+  .shell, .topbar, .ambient-blobs, #bg-canvas, .theme-toggle { display: none !important; }
+  #print-target { display: block !important; position: absolute; top: 0; left: 0; width: 100%; padding: 40px; color: #000 !important; }
+  #print-target * { color: #000 !important; background: transparent !important; }
+  #print-target .align-box { border: 1px solid #333 !important; }
+  #print-target table, #print-target th, #print-target td { border-color: #333 !important; }
+}
+
+/* ---- v2.5 additions ---- */
+.theme-switching, .theme-switching * { transition: background-color .3s, border-color .3s, color .3s !important; }
+.inset { background: var(--inset-bg); border: 1px solid var(--line-soft); }
+.base-n { color: var(--text-dim); }
+.align-box { font-family: var(--font-mono); font-size: 12px; line-height: 1.55; background: #07182a; color: #dbe6f2; border: 1px solid var(--line); border-radius: var(--radius-md); padding: 12px 14px; overflow-x: auto; white-space: pre; }
+.aln-mm { color: #ff6768; font-weight: 700; background: rgba(255,103,104,.16); }
+.aln-gap { color: #ffb648; font-weight: 700; }
+body.day-mode .dna-strip { background: #07182a; color: #dbe6f2; }
+body.day-mode input, body.day-mode select, body.day-mode textarea { background: rgba(255,255,255,.95); }
+body.day-mode input:focus, body.day-mode select:focus, body.day-mode textarea:focus { background: #fff; }
+body.day-mode .doc-demo-card { background: rgba(255,255,255,.75); }
+body.day-mode .toast { background: #fff; color: #0b2230; }
+body.day-mode .btn-cyan, body.day-mode .btn-teal { color: #fff; }
+@media (prefers-reduced-motion: reduce) { .view.active { animation: none; } }
+@media print { #print-target .no-print { display: none !important; } }
+</style>
+</head>
+<body>
+
+<!-- Animated Floating Canvas Background -->
+<canvas id="bg-canvas"></canvas>
+<div class="ambient-blobs"><div class="ambient-blob blob-1"></div><div class="ambient-blob blob-2"></div><div class="ambient-blob blob-3"></div></div>
+
+<!-- Day / Night theme toggle -->
+<div class="theme-toggle" role="group" aria-label="Theme toggle">
+  <button type="button" id="theme-btn-night" onclick="setTheme('night')" title="Night mode" aria-label="Night mode">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
+  <button type="button" id="theme-btn-day" onclick="setTheme('day')" title="Day mode" aria-label="Day mode">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8"/></svg>
+  </button>
+</div>
+
+<!-- ==========================================================================
+     PAGE 1: LOGIN / AUTHENTICATION VIEW
+     ========================================================================== -->
+<section id="view-login" class="view active" style="min-height: 100vh; width: 100%; box-sizing: border-box; display: flex; align-items: center; justify-content: center; padding: 24px;">
+  <div style="width: 100%; max-width: 680px; margin: 0 auto; position: relative; z-index: 2;">
+    <div class="card card-glow-cyan" style="padding: 38px 36px;">
+      
+      <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 24px;">
+        <div class="brand-logo" style="width: 48px; height: 48px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div>
+          <h1 style="font-size: 22px; font-weight: 800; letter-spacing: -0.02em;">Vitae Guardians</h1>
+          <p style="font-size: 12px; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700;">Autonomous Newborn Genetic Screening Platform</p>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 8px; margin-bottom: 24px; background: var(--inset-bg); padding: 4px; border-radius: var(--radius-md); border: 1px solid var(--line-soft);">
+        <button class="btn btn-glass btn-sm" id="auth-tab-clinician" style="flex: 1; border: none;" onclick="setAuthMode('login')">Clinician Login</button>
+        <button class="btn btn-glass btn-sm" id="auth-tab-signup" style="flex: 1; border: none;" onclick="setAuthMode('signup')">Register New Doctor</button>
+      </div>
+
+      <div id="auth-error" class="pill pill-high hidden" style="width: 100%; margin-bottom: 16px; padding: 8px 14px;"></div>
+
+      <!-- Login Form -->
+      <form id="form-login" onsubmit="return handleLogin(event)">
+        <div class="field">
+          <label>Clinician / Admin Email</label>
+          <input type="email" id="login-email" placeholder="e.g. anna@vitae.org" required>
+        </div>
+        <div class="field">
+          <label>Security Passcode</label>
+          <input type="password" id="login-password" placeholder="••••••••" required>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+          <label style="display: flex; align-items: center; gap: 8px; text-transform: none; font-size: 13px; font-weight: 500; cursor: pointer; color: var(--text-soft);">
+            <input type="checkbox" id="login-remember" checked style="width: 16px; height: 16px;">
+            7-Day Secure Clinical Session
+          </label>
+          <a href="#" style="font-size: 12px; color: var(--cyan); text-decoration: none;" onclick="toast('Please click any demo account below for instant sign-in.')">Quick Access?</a>
+        </div>
+        <button type="submit" class="btn btn-cyan" style="width: 100%; font-size: 15px; padding: 13px;">Sign In to Screening Console →</button>
+      </form>
+
+      <!-- Signup Form -->
+      <form id="form-signup" class="hidden" onsubmit="return handleSignup(event)">
+        <div class="field">
+          <label>Doctor Full Name</label>
+          <input type="text" id="signup-name" placeholder="Dr. Sarah Jenkins" required>
+        </div>
+        <div class="field">
+          <label>Department / Specialty</label>
+          <input type="text" id="signup-dept" placeholder="Neonatal Genetics" required>
+        </div>
+        <div class="field">
+          <label>Official Email</label>
+          <input type="email" id="signup-email" placeholder="s.jenkins@vitae.org" required>
+        </div>
+        <div class="field">
+          <label>Create Passcode (Min 6 chars)</label>
+          <input type="password" id="signup-password" minlength="6" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn btn-teal" style="width: 100%; font-size: 15px; padding: 13px;">Create Clinician Profile →</button>
+      </form>
+
+      <!-- Quick Demo Doctor Selector (6 Doctors + 1 Admin) -->
+      <div style="margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line-soft);">
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <span style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--cyan);">⚡ Quick-Select Demo Clinicians:</span>
+          <span class="pill pill-soft">Click to Autofill</span>
+        </div>
+
+        <div class="doc-demo-grid">
+          <div class="doc-demo-card" onclick="fillCredentials('anna@vitae.org', 'VG-ANNA-01')">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="doc-demo-avatar">AR</div>
+              <div>
+                <div style="font-size: 12.5px; font-weight: 700;">Dr. Anna Reyes</div>
+                <div style="font-size: 10.5px; color: var(--text-dim);">4 Patients (Sophia, Dean…)</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="doc-demo-card" onclick="fillCredentials('sean@vitae.org', 'VG-SEAN-02')">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="doc-demo-avatar" style="background: #22c9b8;">SC</div>
+              <div>
+                <div style="font-size: 12.5px; font-weight: 700;">Dr. Sean Coultard</div>
+                <div style="font-size: 10.5px; color: var(--text-dim);">Pediatric Genetics</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="doc-demo-card" onclick="fillCredentials('maya@vitae.org', 'VG-MAYA-03')">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="doc-demo-avatar" style="background: #c9b6ff;">MP</div>
+              <div>
+                <div style="font-size: 12.5px; font-weight: 700;">Dr. Maya Patel</div>
+                <div style="font-size: 10.5px; color: var(--text-dim);">Molecular Genetics</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="doc-demo-card" onclick="fillCredentials('ryan@vitae.org', 'VG-RYAN-04')">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="doc-demo-avatar" style="background: #ffb648;">RV</div>
+              <div>
+                <div style="font-size: 12.5px; font-weight: 700;">Dr. Ryan Vance</div>
+                <div style="font-size: 10.5px; color: var(--text-dim);">NICU Specialist</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="doc-demo-card" onclick="fillCredentials('elena@vitae.org', 'VG-ELENA-05')">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="doc-demo-avatar" style="background: #4fd8ff;">ER</div>
+              <div>
+                <div style="font-size: 12.5px; font-weight: 700;">Dr. Elena Rostova</div>
+                <div style="font-size: 10.5px; color: var(--text-dim);">Genomic Diagnostics</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="doc-demo-card" onclick="fillCredentials('alex@vitae.org', 'VG-ALEX-06')">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="doc-demo-avatar" style="background: #9b7bff;">AK</div>
+              <div>
+                <div style="font-size: 12.5px; font-weight: 700;">Dr. Alex Kim</div>
+                <div style="font-size: 10.5px; color: var(--text-dim);">Clinical Genomics</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 10px;">
+          <div class="doc-demo-card" style="border-color: rgba(255, 103, 104, 0.35); background: rgba(255, 103, 104, 0.08);" onclick="fillCredentials('admin@vitae.org', 'VG-ADMIN-99')">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div class="doc-demo-avatar" style="background: var(--risk-high); color: #fff;">⚙</div>
+                <div>
+                  <div style="font-size: 13px; font-weight: 800; color: var(--text-main);">System Administrator (Global Access)</div>
+                  <div style="font-size: 11px; color: var(--text-soft);">Full oversight across all 6 doctors, all 20+ patients & telemetry</div>
+                </div>
+              </div>
+              <span class="pill pill-high">ADMIN</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     APP SHELL (ACTIVE UPON LOGIN)
+     ========================================================================== -->
+<div class="shell hidden" id="app-shell">
+
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar">
+    <div class="brand-box">
+      <div class="brand-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      </div>
+      <div class="brand-text">
+        <h2>Vitae Guardians</h2>
+        <p>Genomic Screening</p>
+      </div>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-label">Core Clinical</div>
+      <div class="navlink active" data-view="dashboard" onclick="navigate('dashboard')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+        Doctor Dashboard
+      </div>
+      <div class="navlink" data-view="patients" onclick="navigate('patients')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Patient Caseload
+        <span class="nav-badge pill pill-cyan" id="nav-patient-count">0</span>
+      </div>
+      <div class="navlink" data-view="scanner" onclick="navigate('scanner')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m2 9 3-3 3 3"/><path d="M13 15h9"/><path d="M13 9h9"/><path d="M13 3h9"/><path d="M2 15h9"/><path d="m2 21 3-3 3 3"/></svg>
+        Run DNA Scanner
+      </div>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-label">Diagnostics & Analytics</div>
+      <div class="navlink" data-view="reports" onclick="navigate('reports')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/></svg>
+        Clinical Reports
+      </div>
+      <div class="navlink" data-view="benchmarks" onclick="navigate('benchmarks')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Engine Analytics
+      </div>
+      <div class="navlink" data-view="tracking" onclick="navigate('tracking')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+        Alerts & Updates
+        <span class="nav-badge pill pill-high" id="nav-alert-count">0</span>
+      </div>
+    </div>
+
+    <div class="nav-section" id="nav-admin-section">
+      <div class="nav-label">Administration</div>
+      <div class="navlink" data-view="admin" onclick="navigate('admin')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+        Admin Console
+      </div>
+    </div>
+
+    <div class="sidebar-footer">
+      <div style="color: var(--cyan); font-weight: 700; margin-bottom: 2px;">Vitae Engine v2.5</div>
+      7-Day Rolling Storage Active<br>
+      Aho-Corasick DFA · KMP · Needleman–Wunsch
+    </div>
+  </aside>
+
+  <!-- Main Work Area -->
+  <main class="main-content">
+    
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="page-title">
+        <h1 id="topbar-title">Doctor Dashboard</h1>
+        <p id="topbar-sub">Assigned Patient Overview & Screening Telemetry</p>
+      </div>
+
+      <div class="user-chip">
+        <div style="text-align: right;">
+          <div style="font-weight: 700; font-size: 14px; color: var(--nav-text-main);" id="current-user-name">Dr. Anna Reyes</div>
+          <div style="font-size: 11.5px; color: var(--cyan);" id="current-user-role">Hematology & Cardio-Genomics</div>
+        </div>
+        <div class="user-avatar" id="current-user-avatar">AR</div>
+        <button class="btn btn-glass btn-sm" onclick="logout()">Sign Out</button>
+      </div>
+    </header>
+
+    <!-- ==========================================================================
+         PAGE 2: DOCTOR DASHBOARD
+         ========================================================================== -->
+    <section id="view-dashboard" class="view active view-body">
+      
+      <!-- Hero Banner -->
+      <div class="hero-banner">
+        <div style="max-width: 680px; position: relative; z-index: 2;">
+          <span class="pill pill-cyan" style="margin-bottom: 12px;">Biomedical Genomics Live</span>
+          <h2 style="font-size: 26px; margin: 6px 0 10px;">Newborn Screening Triaged Caseload</h2>
+          <p>Multi-pattern genetic scanning using the <b>Aho-Corasick automaton</b> enables instantaneous detection of hemoglobinopathies and neonatal variants in a single pass.</p>
+          <div style="display: flex; gap: 12px; margin-top: 20px;">
+            <button class="btn btn-cyan" onclick="navigate('scanner')">▶ Launch DNA Scan</button>
+            <button class="btn btn-glass" onclick="navigate('patients')">View Full Caseload</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Instant DNA Screen — the primary dynamic-data entry point -->
+      <div class="card card-glow-cyan" style="margin-bottom: 24px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
+          <div>
+            <h3>⚡ Instant DNA Screen</h3>
+            <p class="hint">Paste or upload <b>any</b> DNA sequence — it's screened live against the full 40-marker panel, right here.</p>
+          </div>
+          <span class="pill pill-cyan">Aho-Corasick · Single Pass</span>
+        </div>
+        <textarea id="dash-quick-dna" rows="3" placeholder="Paste raw A/C/G/T or a FASTA sequence here..." style="font-family: var(--font-mono); font-size: 12px;"></textarea>
+        <div style="display: flex; align-items: center; gap: 10px; margin-top: 10px; flex-wrap: wrap;">
+          <input type="file" id="dash-file-input" accept=".txt,.fasta,.fa,.seq" style="display:none" onchange="handleDashboardFileUpload(event)">
+          <button type="button" class="btn btn-glass btn-sm" onclick="document.getElementById('dash-file-input').click()">📁 Upload .fasta / .txt</button>
+          <button type="button" class="btn btn-cyan btn-sm" onclick="runQuickDashboardScan()">Screen Now →</button>
+          <span id="dash-file-name" style="font-size: 11.5px; color: var(--text-dim);">No file loaded</span>
+        </div>
+        <div id="dash-quick-result" style="margin-top: 14px;"></div>
+      </div>
+
+      <!-- Quick Metrics Grid -->
+      <div class="grid grid-4" style="margin-bottom: 24px;">
+        <div class="card stat-widget card-glow-cyan">
+          <div class="label">Assigned Patients</div>
+          <div class="value" id="dash-stat-patients">0</div>
+          <div class="subtext" id="dash-stat-patients-sub">Active in doctor's cohort</div>
+        </div>
+        <div class="card stat-widget card-glow-violet">
+          <div class="label">High-Risk Alerts</div>
+          <div class="value" style="color: var(--risk-high);" id="dash-stat-highrisk">0</div>
+          <div class="subtext">Pathogenic / Compound variants</div>
+        </div>
+        <div class="card stat-widget card-glow-teal">
+          <div class="label">Aho-Corasick Scan Avg</div>
+          <div class="value" style="color: var(--teal);" id="dash-stat-scantime">0.38 ms</div>
+          <div class="subtext">Single pass automaton time</div>
+        </div>
+        <div class="card stat-widget">
+          <div class="label">Screening Panel Size</div>
+          <div class="value" id="dash-stat-panelsize">40</div>
+          <div class="subtext">Monitored variant markers</div>
+        </div>
+      </div>
+
+      <!-- Caseload Table & Quick Actions -->
+      <div class="grid grid-2">
+        <div class="card">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;">
+            <div>
+              <h3>My Assigned Patients</h3>
+              <p class="hint">Patients under your direct clinical supervision</p>
+            </div>
+            <button class="btn btn-glass btn-sm" onclick="openPatientModal()">+ Add Patient</button>
+          </div>
+
+          <div id="dashboard-patient-table-wrap" style="overflow-x: auto;">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="margin-bottom: 4px;">Active Risk Stratification</h3>
+          <p class="hint" style="margin-bottom: 18px;">Caseload distribution by clinical alert tier</p>
+          <canvas id="chart-risk-pie" height="200"></canvas>
+          
+          <div style="margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line-soft); display: flex; justify-content: space-around;">
+            <div style="text-align: center;">
+              <span class="dot dot-high"></span>
+              <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">High Risk</div>
+              <b style="color: var(--risk-high);" id="pie-count-high">0</b>
+            </div>
+            <div style="text-align: center;">
+              <span class="dot dot-med"></span>
+              <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">Medium Risk</div>
+              <b style="color: var(--risk-med);" id="pie-count-med">0</b>
+            </div>
+            <div style="text-align: center;">
+              <span class="dot dot-low"></span>
+              <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">Low / Normal</div>
+              <b style="color: var(--risk-low);" id="pie-count-low">0</b>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==========================================================================
+         PAGE 3: PATIENT MANAGEMENT (FULL CRUD)
+         ========================================================================== -->
+    <section id="view-patients" class="view view-body">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 14px;">
+        <div>
+          <h2>Patient Caseload Management</h2>
+          <p>Search, filter, edit demographics and assign clinical screening panels.</p>
+        </div>
+        <button class="btn btn-cyan" onclick="openPatientModal()">+ Register New Patient</button>
+      </div>
+
+      <!-- Filters & Search Toolbar -->
+      <div class="card" style="margin-bottom: 20px; padding: 16px 20px;">
+        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr auto; gap: 14px; align-items: center;">
+          <div>
+            <input type="text" id="patient-search-input" placeholder="🔍 Search by Patient Name, MRN, Condition..." oninput="renderPatientList()">
+          </div>
+          <div>
+            <select id="patient-filter-risk" onchange="renderPatientList()">
+              <option value="all">All Risk Tiers</option>
+              <option value="high">High Risk (Red)</option>
+              <option value="medium">Medium Risk (Yellow)</option>
+              <option value="low">Low Risk / Normal (Green)</option>
+            </select>
+          </div>
+          <div>
+            <select id="patient-filter-doctor" onchange="renderPatientList()">
+              <option value="all">All Doctors</option>
+            </select>
+          </div>
+          <button class="btn btn-glass btn-sm" onclick="resetPatientFilters()">Reset</button>
+        </div>
+      </div>
+
+      <!-- Patient Table Card -->
+      <div class="card">
+        <div id="patients-full-table-wrap" style="overflow-x: auto;">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         PAGE 4: CLINICAL TESTS & DNA SCANNER
+         ========================================================================== -->
+    <section id="view-scanner" class="view view-body">
+      <div style="margin-bottom: 20px;">
+        <h2>Autonomous DNA Scanning & Variant Detection</h2>
+        <p>Cross-validate sequences with Aho-Corasick (DFA) and KMP, then confirm every flagged locus by Needleman–Wunsch global alignment.</p>
+      </div>
+
+      <div class="grid grid-2" style="align-items: start;">
+        <div class="card card-glow-cyan">
+          <h3 style="margin-bottom: 14px;">1. Select Patient / Sample Sequence</h3>
+          <div class="field">
+            <label>Select Patient from Caseload</label>
+            <div style="display:flex; gap:8px;">
+              <select id="scan-patient-select" onchange="onScanPatientChanged()"></select>
+              <button type="button" class="btn btn-glass btn-sm" style="white-space:nowrap" onclick="drawNewSample()" title="Draw a fresh dried-blood-spot sample for this patient">🔄 New Sample</button>
+            </div>
+            <div class="hint" id="scan-sample-info">—</div>
+          </div>
+          <div class="field">
+            <label>Or Paste / Upload Any DNA Sequence (FASTA or raw A/C/G/T)</label>
+            <textarea id="scan-custom-dna" rows="4" placeholder="Paste A/C/G/T sequence here, upload a file below, or choose a patient above..." style="font-family: var(--font-mono); font-size: 12px;" oninput="onCustomDnaInput()"></textarea>
+            <div style="display:flex; align-items:center; gap:10px; margin-top:8px;">
+              <input type="file" id="scan-file-input" accept=".txt,.fasta,.fa,.seq" style="display:none" onchange="handleDnaFileUpload(event)">
+              <button type="button" class="btn btn-glass btn-sm" onclick="document.getElementById('scan-file-input').click()">📁 Upload .fasta / .txt file</button>
+              <span id="scan-file-name" style="font-size:11.5px; color: var(--text-dim);">No file loaded</span>
+            </div>
+          </div>
+          <div class="field">
+            <label>Target Marker Panel Size</label>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <button type="button" class="btn btn-glass btn-sm scan-panel-btn" onclick="setScanPanelSize(10, this)">10 Markers</button>
+              <button type="button" class="btn btn-glass btn-sm scan-panel-btn" onclick="setScanPanelSize(20, this)">20 Markers</button>
+              <button type="button" class="btn btn-glass btn-sm scan-panel-btn" onclick="setScanPanelSize(30, this)">30 Markers</button>
+              <button type="button" class="btn btn-glass btn-sm scan-panel-btn active" onclick="setScanPanelSize(40, this)">40 Markers (Full Panel)</button>
+            </div>
+          </div>
+          <button class="btn btn-cyan" id="btn-execute-scan" style="width: 100%; font-size: 14.5px; padding: 13px; margin-top: 8px;" onclick="executeDnaScan()">
+            ⚡ Execute Triple-Engine Scan (AC + KMP + Needleman–Wunsch)
+          </button>
+          <div id="scan-progress-bar" class="hidden" style="margin-top: 16px;">
+            <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--cyan); margin-bottom: 4px;">
+              <span id="scan-progress-text">Starting…</span><span id="scan-progress-pct">0%</span>
+            </div>
+            <div style="height: 5px; background: var(--bg-deep); border-radius: 4px; overflow: hidden;">
+              <div id="scan-progress-fill" style="height: 100%; width: 0%; background: linear-gradient(90deg, var(--cyan), var(--teal)); transition: width .15s;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+            <h3>Genomics Sequence Inspector</h3>
+            <span class="pill pill-soft" id="preview-length-badge">0 bp</span>
+          </div>
+          <div class="dna-strip" id="interactive-dna-preview">Select a sample or patient to load DNA nucleotides...</div>
+          <div style="display: flex; gap: 14px; margin-top: 12px; font-size: 11.5px; flex-wrap: wrap;">
+            <span><span class="base-a">■</span> A</span><span><span class="base-c">■</span> C</span>
+            <span><span class="base-g">■</span> G</span><span><span class="base-t">■</span> T</span>
+            <span><mark class="hit-variant">■</mark> high-risk hit</span><span><mark class="hit-carrier">■</mark> carrier hit</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="scan-results-panel" class="hidden" style="margin-top: 24px;">
+        <div class="grid grid-4" style="margin-bottom: 20px;">
+          <div class="card stat-widget card-glow-teal">
+            <div class="label">Engine Correctness</div>
+            <div id="res-correctness-badge" style="margin-top: 10px;"></div>
+            <div class="subtext" style="margin-top: 8px;" id="res-correctness-sub"></div>
+          </div>
+          <div class="card stat-widget card-glow-cyan">
+            <div class="label">Aho-Corasick Engine</div>
+            <div class="value" style="color: var(--cyan);" id="res-ac-time">—</div>
+            <div class="subtext" id="res-ac-sub"></div>
+          </div>
+          <div class="card stat-widget">
+            <div class="label">KMP Baseline Engine</div>
+            <div class="value" style="color: var(--text-soft);" id="res-kmp-time">—</div>
+            <div class="subtext" id="res-speedup-ratio"></div>
+          </div>
+          <div class="card stat-widget card-glow-violet">
+            <div class="label">Needleman–Wunsch</div>
+            <div class="value" style="color: var(--violet);" id="res-nw-time">—</div>
+            <div class="subtext" id="res-nw-sub"></div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 20px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; gap:10px; flex-wrap:wrap;">
+            <div><h3>Flagged Genetic Conditions & Mutations</h3><p class="hint">Exact locus positions (1-based) with global-alignment confirmation</p></div>
+            <div id="res-compound-alert"></div>
+          </div>
+          <div id="res-matches-table-wrap" style="overflow-x:auto;"></div>
+        </div>
+
+        <div class="card card-glow-violet" style="margin-bottom: 20px;">
+          <h3 style="margin-bottom:4px;">Needleman–Wunsch Locus Confirmations</h3>
+          <p class="hint" style="margin-bottom:14px;">Each flagged locus (±12 bp flank) is globally aligned against its reference allele. Red = substitution, amber = gap. Scoring: match +2, mismatch −1, gap −2.</p>
+          <div id="res-nw-wrap"></div>
+        </div>
+
+        <div class="card card-glow-violet" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+          <div>
+            <h4 style="color: var(--text-main); margin-bottom: 4px;">Clinical Decision Support (CDS) Ready</h4>
+            <p style="font-size: 13px;" id="res-cds-summary"></p>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button class="btn btn-glass" onclick="exportCurrentScanJson()">Export JSON Data</button>
+            <button class="btn btn-violet" onclick="generateOfficialReportFromScan()">📄 View & Print Clinician Report →</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-glow-teal" style="margin-top: 24px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-bottom: 10px;">
+          <div><h3>Needleman–Wunsch Alignment Lab</h3><p class="hint">Globally align any two DNA sequences (up to ~20 M matrix cells).</p></div>
+          <button class="btn btn-glass btn-sm" onclick="loadLabFromScan()">↺ Load from last scan</button>
+        </div>
+        <div class="grid grid-2-eq">
+          <div class="field"><label>Sequence A (sample)</label><textarea id="lab-seq-a" rows="3" style="font-family: var(--font-mono); font-size: 12px;"></textarea></div>
+          <div class="field"><label>Sequence B (reference)</label><textarea id="lab-seq-b" rows="3" style="font-family: var(--font-mono); font-size: 12px;"></textarea></div>
+        </div>
+        <div style="display:flex; gap:12px; align-items:end; flex-wrap:wrap;">
+          <div style="width:90px;"><label>Match</label><input type="number" id="lab-match" value="2"></div>
+          <div style="width:90px;"><label>Mismatch</label><input type="number" id="lab-mismatch" value="-1"></div>
+          <div style="width:90px;"><label>Gap</label><input type="number" id="lab-gap" value="-2"></div>
+          <button class="btn btn-teal" onclick="runAlignmentLab()">Align (Needleman–Wunsch)</button>
+        </div>
+        <div id="lab-result"></div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         PAGE 5: PATIENT DETAIL & MEDICAL HISTORY
+         ========================================================================== -->
+    <section id="view-patient-detail" class="view view-body">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
+        <button class="btn btn-glass btn-sm" onclick="navigate('patients')">← Back to Caseload</button>
+        <div style="display: flex; gap: 10px;">
+          <button class="btn btn-glass btn-sm" id="btn-detail-edit" onclick="openEditCurrentPatient()">Edit Details</button>
+          <button class="btn btn-cyan btn-sm" id="btn-detail-scan" onclick="runScanForCurrentPatient()">Run New DNA Scan</button>
+        </div>
+      </div>
+
+      <div class="grid grid-2" style="align-items: start;">
+        
+        <!-- Left: Patient Demographics & Genetics Card -->
+        <div>
+          <div class="card card-glow-cyan" style="margin-bottom: 20px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+              <div style="display: flex; align-items: center; gap: 14px;">
+                <div class="user-avatar" id="detail-avatar" style="width: 48px; height: 48px; font-size: 18px;">SV</div>
+                <div>
+                  <h2 id="detail-name">Sophia Vance</h2>
+                  <div style="font-size: 12px; color: var(--cyan); font-family: var(--font-mono);" id="detail-mrn">MRN: VG-2026-0041</div>
+                </div>
+              </div>
+              <div id="detail-risk-badge"><span class="pill pill-high">High Risk</span></div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--line-soft);">
+              <div>
+                <span class="hint">Date of Birth</span>
+                <div style="font-weight: 600;" id="detail-dob">2026-08-10</div>
+              </div>
+              <div>
+                <span class="hint">Sex / Blood Type</span>
+                <div style="font-weight: 600;" id="detail-sex">Female · O+</div>
+              </div>
+              <div>
+                <span class="hint">Gestational Age</span>
+                <div style="font-weight: 600;" id="detail-gestation">39 Weeks 2 Days</div>
+              </div>
+              <div>
+                <span class="hint">Birth Weight</span>
+                <div style="font-weight: 600;" id="detail-weight">3,240 grams</div>
+              </div>
+              <div>
+                <span class="hint">Assigned Clinician</span>
+                <div style="font-weight: 600; color: var(--cyan);" id="detail-doctor">Dr. Anna Reyes</div>
+              </div>
+              <div>
+                <span class="hint">Primary Flagged Condition</span>
+                <div style="font-weight: 600;" id="detail-condition">Sickle Cell Disease</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Clinical Timeline -->
+          <div class="card">
+            <h3 style="margin-bottom: 14px;">Screening Timeline & Test History</h3>
+            <div id="detail-timeline-wrap">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Physician Notes & Genomic Loci -->
+        <div>
+          <!-- Notes Card -->
+          <div class="card" style="margin-bottom: 20px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+              <h3>Physician Clinical Notes</h3>
+              <span class="pill pill-soft">7-Day Rolling Storage</span>
+            </div>
+            
+            <div id="detail-notes-list" style="max-height: 220px; overflow-y: auto; margin-bottom: 14px;">
+              <!-- Rendered by JS -->
+            </div>
+
+            <div style="display: flex; gap: 8px;">
+              <input type="text" id="detail-new-note-input" placeholder="Add physician sign-off note...">
+              <button class="btn btn-teal btn-sm" onclick="addDoctorNote()">Add Note</button>
+            </div>
+          </div>
+
+          <!-- Diagnostic Action Card -->
+          <div class="card card-glow-teal">
+            <h3>Recommended Action Plan</h3>
+            <div id="detail-action-plan" style="font-size: 13.5px; margin-top: 10px; line-height: 1.6;">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         PAGE 6: CLINICAL REPORTS (VIEW & PRINTABLE PDF)
+         ========================================================================== -->
+    <section id="view-reports" class="view view-body">
+      <div style="margin-bottom: 20px;">
+        <h2>Clinician Diagnostic Reports</h2>
+        <p>Comprehensive genetic reports ready for clinical sign-off, patient records, and PDF export.</p>
+      </div>
+
+      <div class="grid grid-2" style="align-items: start;">
+        
+        <!-- Reports Roster -->
+        <div class="card">
+          <h3 style="margin-bottom: 12px;">Select Diagnostic Report</h3>
+          <div id="reports-list-wrap">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Printable Report Detail Card -->
+        <div class="card card-glow-cyan" id="active-report-card">
+          <div id="report-render-target">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         PAGE 7: BENCHMARKING & ANALYTICS
+         ========================================================================== -->
+    <section id="view-benchmarks" class="view view-body">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
+        <div>
+          <h2>Algorithm Benchmarking & Performance Analytics</h2>
+          <p>Real-time empirical execution metrics: Single-pass Aho-Corasick vs. Multi-pass KMP baseline.</p>
+        </div>
+        <button class="btn btn-cyan" id="btn-run-bench" onclick="runFullLiveBenchmark()">⚡ Run Live Benchmark (5 → 80 Markers)</button>
+      </div>
+
+      <div class="grid grid-2" style="margin-bottom: 20px;">
+        <!-- Scaling Graph -->
+        <div class="card card-glow-cyan">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+            <h3>Algorithmic Scaling Graph</h3>
+            <span class="pill pill-cyan">O(N+M) vs O(K·N)</span>
+          </div>
+          <canvas id="chart-benchmark-canvas" height="240"></canvas>
+          <div class="hint" style="margin-top: 10px;">
+            *Aho-Corasick execution time remains flat as marker panel scales; KMP scales linearly with panel size.
+          </div>
+        </div>
+
+        <!-- Telemetry & Health -->
+        <div class="card">
+          <h3 style="margin-bottom: 12px;">Genomic Pipeline Telemetry</h3>
+          <div id="benchmark-telemetry-list">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Disease Prevalence & Risk Stratification -->
+      <div class="grid grid-2-eq">
+        <div class="card">
+          <h3 style="margin-bottom: 10px;">Pathology Detection Frequency</h3>
+          <canvas id="chart-disease-bar" height="180"></canvas>
+        </div>
+        <div class="card">
+          <h3 style="margin-bottom: 10px;">Cross-Validation Agreement Log</h3>
+          <div id="validation-audit-table-wrap" style="max-height: 220px; overflow-y: auto;">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         PAGE 8: TRACKING, ALERTS & INBOX
+         ========================================================================== -->
+    <section id="view-tracking" class="view view-body">
+      <div style="margin-bottom: 20px;">
+        <h2>Live Tracking, Alerts & Clinical Notifications</h2>
+        <p>Real-time audit log of newborn admissions, critical variant alerts, and doctor communications.</p>
+      </div>
+
+      <div class="grid grid-2" style="align-items: start;">
+        
+        <!-- Left: Inbox of Notification Cards -->
+        <div>
+          <h3 style="margin-bottom: 14px;">Clinical Alert Inbox</h3>
+          <div id="tracking-inbox-list">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Right: Live Activity Stream -->
+        <div>
+          <div class="card card-glow-teal">
+            <h3 style="margin-bottom: 14px;">Live Event Audit Feed</h3>
+            <div id="tracking-activity-feed" style="display: flex; flex-direction: column; gap: 12px;">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         PAGE 9: ADMIN DASHBOARD
+         ========================================================================== -->
+    <section id="view-admin" class="view view-body">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
+        <div>
+          <span class="pill pill-high" style="margin-bottom: 6px;">Administrator Authority</span>
+          <h2>Global Hospital System Administration</h2>
+          <p>Full cross-department oversight of clinicians, active patient databases, and genomic marker panels.</p>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button class="btn btn-glass btn-sm" onclick="exportAllSystemData()">Export System Database</button>
+          <button class="btn btn-danger btn-sm" onclick="confirmDatabaseReset()">Reset to Default State</button>
+        </div>
+      </div>
+
+      <!-- Admin Stat Grid -->
+      <div class="grid grid-4" style="margin-bottom: 24px;">
+        <div class="card stat-widget card-glow-cyan">
+          <div class="label">Registered Clinicians</div>
+          <div class="value" id="admin-stat-doctors">6</div>
+          <div class="subtext">Active geneticists & pediatricians</div>
+        </div>
+        <div class="card stat-widget card-glow-teal">
+          <div class="label">Global Patients</div>
+          <div class="value" id="admin-stat-patients">20</div>
+          <div class="subtext">Across all clinical cohorts</div>
+        </div>
+        <div class="card stat-widget card-glow-violet">
+          <div class="label">Completed DNA Scans</div>
+          <div class="value" id="admin-stat-scans">0</div>
+          <div class="subtext">Stored in 7-day retention</div>
+        </div>
+        <div class="card stat-widget">
+          <div class="label">Active Marker Panel</div>
+          <div class="value" id="admin-stat-markers">40</div>
+          <div class="subtext">Configured disease targets</div>
+        </div>
+      </div>
+
+      <!-- Doctor Roster & Caseload Oversight -->
+      <div class="card" style="margin-bottom: 24px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+          <h3>Clinician Staff Directory & Caseloads</h3>
+          <span class="pill pill-soft" id="admin-doc-count">6 Active Doctors</span>
+        </div>
+        <div id="admin-doctors-table-wrap" style="overflow-x: auto;">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+
+      <!-- Genetic Marker Panel Management -->
+      <div class="card">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+          <div>
+            <h3>Active Screening Marker Panel</h3>
+            <p class="hint">Genomic variant patterns loaded into the Aho-Corasick automaton</p>
+          </div>
+          <button class="btn btn-teal btn-sm" onclick="openMarkerModal()">+ Add Custom Marker</button>
+        </div>
+        <div id="admin-markers-table-wrap" style="overflow-x: auto; max-height: 320px;">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ==========================================================================
+     MODALS
+     ========================================================================== -->
+
+<!-- Patient Add/Edit Modal -->
+<div class="modal-backdrop hidden" id="modal-patient">
+  <div class="modal card-glow-cyan">
+    <h3 style="margin-bottom: 6px;" id="modal-patient-title">Register New Newborn Patient</h3>
+    <p class="hint" style="margin-bottom: 18px;">Enter demographics, birth metrics, and assign attending clinician.</p>
+
+    <form id="form-patient" onsubmit="return submitPatientForm(event)">
+      <input type="hidden" id="form-patient-id">
+      
+      <div class="field">
+        <label>Full Patient Name</label>
+        <input type="text" id="form-p-name" placeholder="e.g. Liam Vance" required>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+        <div class="field">
+          <label>Date of Birth</label>
+          <input type="date" id="form-p-dob" required>
+        </div>
+        <div class="field">
+          <label>Sex</label>
+          <select id="form-p-sex">
+            <option value="Female">Female</option>
+            <option value="Male">Male</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+        <div class="field">
+          <label>Gestational Age</label>
+          <input type="text" id="form-p-gest" placeholder="e.g. 39w 2d" required>
+        </div>
+        <div class="field">
+          <label>Birth Weight (grams)</label>
+          <input type="number" id="form-p-weight" placeholder="3200" required>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+        <div class="field">
+          <label>Assigned Clinician</label>
+          <select id="form-p-doctor" required>
+            <!-- Populated by JS -->
+          </select>
+        </div>
+        <div class="field">
+          <label>Risk Classification</label>
+          <select id="form-p-risk" onchange="onPatientRiskChanged()">
+            <option value="low">Low Risk / Normal</option>
+            <option value="medium">Medium Risk / Carrier</option>
+            <option value="high">High Risk / Pathogenic</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label>Simulated Sample Genotype</label>
+        <select id="form-p-sample" oninput="sampleTouched = true"></select>
+        <div class="hint">Drives the generated DNA for this child's dried-blood-spot sample.</div>
+      </div>
+
+
+      <div class="field">
+        <label>Primary Condition / Finding</label>
+        <input type="text" id="form-p-condition" placeholder="e.g. Sickle Cell Trait (HbAS)" required>
+      </div>
+
+      <div style="display: flex; gap: 12px; margin-top: 20px;">
+        <button type="button" class="btn btn-glass" style="flex: 1;" onclick="closePatientModal()">Cancel</button>
+        <button type="submit" class="btn btn-cyan" style="flex: 1;">Save Patient Record</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Marker Add Modal -->
+<div class="modal-backdrop hidden" id="modal-marker">
+  <div class="modal card-glow-teal">
+    <h3 style="margin-bottom: 6px;">Add Genetic Marker to Screening Panel</h3>
+    <p class="hint" style="margin-bottom: 18px;">Configure variant pattern for Aho-Corasick automaton compilation.</p>
+
+    <form id="form-marker" onsubmit="return submitMarkerForm(event)">
+      <div class="field">
+        <label>Disease / Condition Name</label>
+        <input type="text" id="form-m-disease" placeholder="e.g. Cystic Fibrosis (deltaF508)" required>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+        <div class="field">
+          <label>Gene Symbol</label>
+          <input type="text" id="form-m-gene" placeholder="CFTR" required>
+        </div>
+        <div class="field">
+          <label>Severity Tier</label>
+          <select id="form-m-sev">
+            <option value="high">High Risk</option>
+            <option value="medium">Medium Risk</option>
+            <option value="low">Low Risk</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Mutation Type</label>
+        <select id="form-m-type">
+          <option value="point">Point Mutation (SNP)</option>
+          <option value="deletion">Deletion Variant</option>
+          <option value="insertion">Insertion Variant</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Exact DNA Target Pattern (A/C/G/T only)</label>
+        <input type="text" id="form-m-pattern" class="mono" placeholder="ACCATCGATGAG" pattern="[ACGTacgt]+" required>
+      </div>
+
+      <div style="display: flex; gap: 12px; margin-top: 20px;">
+        <button type="button" class="btn btn-glass" style="flex: 1;" onclick="closeMarkerModal()">Cancel</button>
+        <button type="submit" class="btn btn-teal" style="flex: 1;">Add to Screening Automaton</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Print Target (for PDF Generator) -->
+<div id="print-target" class="hidden"></div>
+
+<!-- Toast Notifications -->
+<div class="toast-root" id="toast-root"></div>
+
+<!-- ==========================================================================
+     APPLICATION LOGIC & ENGINES
+     ========================================================================== -->
+<script>
+/* ==========================================================================
+   VITAE GUARDIANS v2.5 — application logic
+   Part 1: PURE CORE (no DOM)  — engines, sample generator, helpers
+   Part 2: UI
+   ========================================================================== */
+const NS = 'vg_v3_';
+const DAY = 24 * 60 * 60 * 1000;
+const RETENTION_MS = 7 * DAY;
+const now = () => Date.now();
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const uid = (p='id') => p + '_' + Math.random().toString(36).slice(2, 10);
+
+function mulberry32(a) {
+  return function() {
+    a |= 0; a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+function hashStr(s) {
+  let h = 2166136261 >>> 0;
+  for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; }
+  return h >>> 0;
+}
+const BASES = ['A','C','G','T'];
+function randomDna(len, seed) {
+  const r = mulberry32(seed), a = new Array(len);
+  for (let i = 0; i < len; i++) a[i] = BASES[(r() * 4) | 0];
+  return a.join('');
+}
+
+/* Real 40-marker panel (ported from MarkerPanel.java) */
+const REAL_MARKER_PANEL = [
+["HBB_HbS","CTGACTCCTGTGGAGAAGTCT","HBB","Sickle Cell Disease (HbSS / HbAS)","Codon 6 Glu→Val (GAG→GTG); c.20A>T","high"],
+["HBB_BETA0","AGTTGGTGGTAAGGCCCTGGG","HBB","Beta-Thalassemia (β⁰)","Point mutation, position 128 (teaching marker)","high"],
+["HBB_REF","ACACCATGGTGCATCTGACT","HBB","Wild-type HBB control region","Reference allele — negative control","none"],
+["HBB_HbC","CTGACTCCTGCGGAGAAGTCT","HBB","Haemoglobin C Disease (HbCC / HbSC)","Codon 6 Glu→Lys (GAG→AAG); c.19G>A","high"],
+["HBB_HbE","CCTGAGGAGAAGTCTGCCGTT","HBB","Haemoglobin E Trait / Disease","Codon 26 Glu→Lys; aberrant splice site","medium"],
+["HBB_HbD","CTGACTCCTGAGGAGAAATCT","HBB","Haemoglobin D-Punjab","Codon 121 Glu→Gln; South Asian populations","medium"],
+["HBB_HbOArab","CTGACTCCTGAGGATAAGACT","HBB","Haemoglobin O-Arab","Codon 121 Glu→Lys; Balkan / Middle Eastern","medium"],
+["HBA_Alpha1Del","GGTGGTGAGGCCCTGGGCAGG","HBA1","Alpha-Thalassemia (single α-gene deletion)","Deletion of one HBA1/HBA2 locus; carrier state","low"],
+["HBA_HbH","CATCTGACTCCTGAGGAGAAG","HBA2","Haemoglobin H Disease (−−/αα)","Deletion of 3 of 4 alpha-globin genes","high"],
+["HBB_IVS1_110","CCTGAGGAGAAGTCAGCCGTT","HBB","Beta-Thalassemia IVS-I-110 (G>A)","Common Mediterranean β⁺ allele","high"],
+["HBB_IVS2_654","GGTGGTGAAGCCCTGGGCAGG","HBB","Beta-Thalassemia IVS-II-654 (C>T)","Common in Southeast Asia; aberrant splicing","high"],
+["HBB_Cd39","CTGAGGAGAAGTCTGCCGTTA","HBB","Beta-Thalassemia Codon 39 (nonsense)","Premature stop codon (Gln→Stop)","high"],
+["G6PD_A_Minus","GTCACAGCCTGCCTGAAGGTG","G6PD","G6PD Deficiency — A− variant","c.202G>A (Val68Met)","medium"],
+["G6PD_Mediterranean","GACGCCGTGGCCAGCAAGGAG","G6PD","G6PD Deficiency — Mediterranean variant","c.563C>T (Ser188Phe); severe deficiency","high"],
+["PKU_PAH_R408W","GAAGGAGCTGCACAACCTGGG","PAH","Phenylketonuria (PKU) — R408W","Most common European PKU allele","high"],
+["CF_CFTR_F508del","CTTTTTTATACTCTTCTTCCT","CFTR","Cystic Fibrosis — ΔF508 deletion","Most common CF variant worldwide","high"],
+["GAL_GALT_Q188R","GCAGGTTCCGCACCACCTGAT","GALT","Classic Galactosaemia — Q188R","Severe neonatal liver failure if untreated","high"],
+["MCAD_ACADM_K304E","CAGCTTTGGGATGCCGGTGTG","ACADM","MCAD Deficiency","c.985A>G (K304E); hypoglycaemic crisis risk","high"],
+["BIO_BTD_D444H","CCAGGCCTGGAATGTCACCGG","BTD","Biotinidase Deficiency — D444H","Partial deficiency; responds to biotin","medium"],
+["CAH_CYP21A2_I173N","GACCCCTACATCATCATCAACA","CYP21A2","Congenital Adrenal Hyperplasia — I173N","Simple virilising allele; c.518T>A","high"],
+["MSUD_BCKDHA_Y438N","GCACATGGAGGTGGCCTTTGG","BCKDHA","Maple Syrup Urine Disease — Y438N","Branched-chain ketoacid dehydrogenase deficiency","high"],
+["IVA_IVD_R363C","GCAGCCCCTGTACCCGGACTT","IVD","Isovaleric Acidaemia — R363C","c.1087C>T; sweaty-feet odour","medium"],
+["HCY_CBS_I278T","GACGTGGTCAGCATGGCCATC","CBS","Homocystinuria — I278T","B6-responsive; thromboembolism risk","medium"],
+["TYR_FAH_W262X","CAGAATTTCTGGCTACAGCAC","FAH","Tyrosinaemia Type I — W262X","c.786G>A; severe hepatorenal disease","high"],
+["MPS1_IDUA_W402X","GATGGGCTGGAGCAGTGGCTG","IDUA","Mucopolysaccharidosis I (Hurler) — W402X","c.1205G>A; most common Hurler allele","high"],
+["SMA_SMN1_Ex7del","AGACTATCAACTTAATTTCTT","SMN1","Spinal Muscular Atrophy — SMN1 exon 7 del","Homozygous deletion causes SMA","high"],
+["DMD_EXON48_Del","GCAAGAAGAGAAACGATCAGC","DMD","Duchenne Muscular Dystrophy — Exon 48 del","Most common DMD deletion hotspot","high"],
+["FXS_FMR1_CGG","CGGCGGCGGCGGCGGCGGCGG","FMR1","Fragile X Syndrome — CGG repeat region","Premutation/full mutation repeat marker","medium"],
+["SYN_029","CAAGTCCCACCAACACCTA","SYN","Synthetic filler marker #29","Benchmark-only pseudorandom sequence","low"],
+["SYN_030","TACAATCGAATGGTAAAGCTG","SYN","Synthetic filler marker #30","Benchmark-only pseudorandom sequence","medium"],
+["SYN_031","GCAGCCGCACTTTCAGACCTT","SYN","Synthetic filler marker #31","Benchmark-only pseudorandom sequence","low"],
+["SYN_032","TTGAACCGGTGCCATTAGGCA","SYN","Synthetic filler marker #32","Benchmark-only pseudorandom sequence","high"],
+["SYN_033","CGTAGCATGCACTTGGACCTA","SYN","Synthetic filler marker #33","Benchmark-only pseudorandom sequence","low"],
+["SYN_034","AATCGTACCGGATCACTTGCC","SYN","Synthetic filler marker #34","Benchmark-only pseudorandom sequence","medium"],
+["SYN_035","GCCTTACGATGTAGCAACGGT","SYN","Synthetic filler marker #35","Benchmark-only pseudorandom sequence","low"],
+["SYN_036","TATTGGCACAGCCGTTAGGAC","SYN","Synthetic filler marker #36","Benchmark-only pseudorandom sequence","medium"],
+["SYN_037","CAAGTTCCGATGCAATGCGAC","SYN","Synthetic filler marker #37","Benchmark-only pseudorandom sequence","low"],
+["SYN_038","GCCTAAGTTCAGGCACTTGCA","SYN","Synthetic filler marker #38","Benchmark-only pseudorandom sequence","high"],
+["SYN_039","ATGCCTGAACGTCAGGTTCCA","SYN","Synthetic filler marker #39","Benchmark-only pseudorandom sequence","medium"],
+["SYN_040","CCAGTTGACGTTCAAGGCTAT","SYN","Synthetic filler marker #40","Benchmark-only pseudorandom sequence","low"]
+].map(r => ({ id:r[0], pattern:r[1], gene:r[2], disease:r[3], mutation_type:r[4], severity:r[5], synthetic:r[0].startsWith('SYN_') }));
+
+const PANEL_BY_ID = Object.fromEntries(REAL_MARKER_PANEL.map(m => [m.id, m]));
+const HBB_WT_CODON6 = 'CTGACTCCTGAGGAGAAGTCT';
+/* Wild-type reference alleles used by the Needleman–Wunsch confirmation step. */
+const WILD_TYPE = { HBB_HbS: HBB_WT_CODON6, HBB_HbC: HBB_WT_CODON6, HBB_HbD: HBB_WT_CODON6 };
+
+/* Simulated child genotypes -> which alleles get injected into the generated sample */
+const GENOTYPES = {
+  'clean':        { label: 'Normal (no panel variants)',           category: 'Normal',     alleles: [] },
+  'single-hbs':   { label: 'Sickle Cell Trait (1× HbS)',           category: 'Sickle Cell', alleles: ['HBB_HbS'] },
+  'hbs-hom':      { label: 'Sickle Cell Disease (2× HbS)',         category: 'Sickle Cell', alleles: ['HBB_HbS','HBB_HbS'] },
+  'hbc':          { label: 'Haemoglobin C (HbC)',                  category: 'Sickle Cell', alleles: ['HBB_HbC'] },
+  'single-thal':  { label: 'Beta-Thalassemia (β⁰)',                category: 'Beta-Thal',   alleles: ['HBB_BETA0'] },
+  'compound':     { label: 'Compound HbS + β⁰-Thalassemia',        category: 'Sickle/Thal', alleles: ['HBB_HbS','HBB_BETA0'] },
+  'cftr-carrier': { label: 'Cystic Fibrosis ΔF508',                category: 'CF',          alleles: ['CF_CFTR_F508del'] },
+  'pku':          { label: 'Phenylketonuria (PAH R408W)',          category: 'PKU',         alleles: ['PKU_PAH_R408W'] },
+  'g6pd':         { label: 'G6PD Deficiency (A−)',                 category: 'G6PD',        alleles: ['G6PD_A_Minus'] },
+  'smn1':         { label: 'SMA (SMN1 exon 7 del)',                category: 'SMA',         alleles: ['SMA_SMN1_Ex7del'] },
+  'galt':         { label: 'Galactosaemia (GALT Q188R)',           category: 'Galactosemia',alleles: ['GAL_GALT_Q188R'] },
+  'mcad':         { label: 'MCAD Deficiency (K304E)',              category: 'MCAD',        alleles: ['MCAD_ACADM_K304E'] }
+};
+
+/* Every (patient, sample-number) pair yields a different, reproducible DNA sample:
+   random background (own length + GC bias) with the genotype's alleles at random loci. */
+function makeSample(sampleType, seedKey, nonce = 0) {
+  const geno = GENOTYPES[sampleType] || GENOTYPES.clean;
+  const seed = (hashStr(String(seedKey)) ^ Math.imul((nonce | 0) + 1, 0x9E3779B1)) >>> 0;
+  const rand = mulberry32(seed);
+  const len = 3600 + Math.floor(rand() * 801);
+  const gc = 0.38 + rand() * 0.16;
+  const arr = new Array(len);
+  for (let i = 0; i < len; i++) {
+    const r = rand(), b = rand();
+    arr[i] = r < gc ? (b < 0.5 ? 'G' : 'C') : (b < 0.5 ? 'A' : 'T');
+  }
+  const used = [], injected = [];
+  for (const id of geno.alleles) {
+    const m = PANEL_BY_ID[id], plen = m.pattern.length;
+    let pos = -1;
+    for (let t = 0; t < 80; t++) {
+      const c = 150 + Math.floor(rand() * (len - 300 - plen));
+      if (used.every(u => c + plen + 40 < u[0] || c > u[1] + 40)) { pos = c; break; }
+    }
+    if (pos < 0) pos = 150 + injected.length * 500;
+    used.push([pos, pos + plen]);
+    for (let k = 0; k < plen; k++) arr[pos + k] = m.pattern[k];
+    injected.push({ id, pos });
+  }
+  return { seq: arr.join(''), len, gc, seed, injected };
+}
+
+/* Raw/FASTA text -> A/C/G/T/N string (headers, digits, whitespace dropped) */
+function parseDnaInput(raw) {
+  return String(raw || '').split(/\r?\n/)
+    .filter(l => !l.trim().startsWith('>') && !l.trim().startsWith(';'))
+    .join('').toUpperCase().replace(/U/g, 'T').replace(/[^ACGTN]/g, '');
+}
+function encodeDna(s) {
+  const n = s.length, out = new Uint8Array(n);
+  for (let i = 0; i < n; i++) {
+    const c = s.charCodeAt(i);
+    out[i] = c === 65 ? 0 : c === 67 ? 1 : c === 71 ? 2 : c === 84 ? 3 : 4;
+  }
+  return out;
+}
+
+/* ---- Aho-Corasick: full DFA over a flat Int32Array (one table lookup per base) ---- */
+class AhoCorasickEngine {
+  build(markers) {
+    this.markers = markers;
+    this.lens = new Int32Array(markers.length);
+    let maxNodes = 1;
+    for (const m of markers) maxNodes += m.pattern.length;
+    const go = new Int32Array(maxNodes * 5).fill(-1);
+    const out = new Array(maxNodes).fill(null);
+    let nodes = 1;
+    markers.forEach((m, idx) => {
+      this.lens[idx] = m.pattern.length;
+      const codes = encodeDna(m.pattern);
+      let node = 0;
+      for (let k = 0; k < codes.length; k++) {
+        const c = codes[k];
+        if (c > 3) { node = -1; break; }
+        if (go[node * 5 + c] === -1) go[node * 5 + c] = nodes++;
+        node = go[node * 5 + c];
+      }
+      if (node > 0) (out[node] || (out[node] = [])).push(idx);
+    });
+    const fail = new Int32Array(nodes), queue = new Int32Array(nodes);
+    let qh = 0, qt = 0;
+    for (let c = 0; c < 5; c++) {
+      const s = go[c];
+      if (s === -1 || c === 4) go[c] = 0; else { fail[s] = 0; queue[qt++] = s; }
+    }
+    while (qh < qt) {
+      const r = queue[qh++];
+      for (let c = 0; c < 5; c++) {
+        const s = go[r * 5 + c];
+        if (c === 4) { go[r * 5 + 4] = 0; continue; }
+        if (s === -1) go[r * 5 + c] = go[fail[r] * 5 + c];
+        else {
+          fail[s] = go[fail[r] * 5 + c];
+          queue[qt++] = s;
+          const fo = out[fail[s]];
+          if (fo) out[s] = (out[s] || []).concat(fo);
+        }
+      }
+    }
+    this.go = go; this.out = out; this.nodes = nodes;
+  }
+  /* returns {hits:[{mi,pos}], total}; hits capped at maxHits (total still exact) */
+  scan(codes, maxHits = 5000) {
+    const go = this.go, out = this.out, lens = this.lens, hits = [];
+    let st = 0, total = 0;
+    for (let i = 0; i < codes.length; i++) {
+      st = go[st * 5 + codes[i]];
+      const o = out[st];
+      if (o !== null) {
+        for (let k = 0; k < o.length; k++) {
+          total++;
+          if (hits.length < maxHits) hits.push({ mi: o[k], pos: i - lens[o[k]] + 1 });
+        }
+      }
+    }
+    return { hits, total };
+  }
+}
+
+/* ---- KMP baseline: one pass per marker (failure tables prebuilt) ---- */
+function kmpFailure(p) {
+  const f = new Int32Array(p.length);
+  let k = 0;
+  for (let i = 1; i < p.length; i++) {
+    while (k > 0 && p[i] !== p[k]) k = f[k - 1];
+    if (p[i] === p[k]) k++;
+    f[i] = k;
+  }
+  return f;
+}
+function buildKmp(panel) {
+  const pats = panel.map(m => encodeDna(m.pattern));
+  return { pats, fails: pats.map(kmpFailure) };
+}
+function kmpScanAll(codes, kmp, maxHits = 5000) {
+  const hits = []; let total = 0;
+  for (let mi = 0; mi < kmp.pats.length; mi++) {
+    const p = kmp.pats[mi], f = kmp.fails[mi], pl = p.length;
+    if (!pl) continue;
+    let k = 0;
+    for (let i = 0; i < codes.length; i++) {
+      const c = codes[i];
+      while (k > 0 && c !== p[k]) k = f[k - 1];
+      if (c === p[k]) k++;
+      if (k === pl) {
+        total++;
+        if (hits.length < maxHits) hits.push({ mi, pos: i - pl + 1 });
+        k = f[k - 1];
+      }
+    }
+  }
+  return { hits, total };
+}
+
+const _engineCache = new Map();
+function getEngines(panel) {
+  const sig = panel.length + ':' + hashStr(panel.map(m => m.id + m.pattern).join('|'));
+  let e = _engineCache.get(sig);
+  if (!e) {
+    const t0 = performance.now();
+    const ac = new AhoCorasickEngine(); ac.build(panel);
+    const t1 = performance.now();
+    const kmp = buildKmp(panel);
+    const t2 = performance.now();
+    e = { ac, kmp, acBuildMs: t1 - t0, kmpBuildMs: t2 - t1 };
+    if (_engineCache.size > 8) _engineCache.delete(_engineCache.keys().next().value);
+    _engineCache.set(sig, e);
+  }
+  return e;
+}
+
+/* Time-boxed timing: warm-up, then repeat until >= minMs has elapsed */
+function benchmarkRun(fn, minMs = 6, maxReps = 3000) {
+  let res = fn();
+  const t0 = performance.now();
+  let reps = 0, el = 0;
+  do { res = fn(); reps++; el = performance.now() - t0; } while (el < minMs && reps < maxReps);
+  return { avgMs: el / reps, result: res, reps };
+}
+
+function normalizeHits(panel, raw) {
+  return raw.map(h => {
+    const m = panel[h.mi];
+    return { marker_id: m.id, disease: m.disease, gene: m.gene, severity: m.severity,
+             mutation_type: m.mutation_type, position: h.pos, pattern: m.pattern };
+  }).sort((a, b) => a.position - b.position);
+}
+function sameHitSets(a, b) {
+  if (a.total !== b.total || a.hits.length !== b.hits.length) return false;
+  const s = new Set(a.hits.map(h => h.mi + '@' + h.pos));
+  return b.hits.every(h => s.has(h.mi + '@' + h.pos));
+}
+function tierFromHits(h) {
+  if (h.some(x => x.severity === 'high')) return 'high';
+  if (h.some(x => x.severity === 'medium')) return 'medium';
+  return 'low';
+}
+function sevClass(sev) { return sev === 'high' ? 'high' : sev === 'medium' ? 'med' : sev === 'low' ? 'low' : 'soft'; }
+function riskClass(r) { return r === 'high' ? 'high' : r === 'medium' ? 'med' : 'low'; }
+
+/* ---- Needleman–Wunsch global alignment (linear gaps, typed arrays, full traceback) ---- */
+function needlemanWunsch(a, b, opts = {}) {
+  const match = opts.match ?? 2, mismatch = opts.mismatch ?? -1, gap = opts.gap ?? -2;
+  const n = a.length, m = b.length;
+  if ((n + 1) * (m + 1) > 20e6) throw new Error('Sequences too long for full global alignment (' + n + ' × ' + m + '). Limit is about 20 million cells.');
+  const t0 = performance.now();
+  const W = m + 1;
+  const dir = new Uint8Array((n + 1) * W);
+  const bc = new Uint8Array(m);
+  for (let j = 0; j < m; j++) bc[j] = b.charCodeAt(j);
+  let prev = new Int32Array(W), cur = new Int32Array(W);
+  for (let j = 1; j <= m; j++) { prev[j] = j * gap; dir[j] = 3; }
+  for (let i = 1; i <= n; i++) {
+    const ai = a.charCodeAt(i - 1), row = i * W;
+    cur[0] = i * gap; dir[row] = 2;
+    for (let j = 1; j <= m; j++) {
+      let best = prev[j - 1] + (ai === bc[j - 1] ? match : mismatch), d = 1;
+      const up = prev[j] + gap;   if (up > best)   { best = up;   d = 2; }
+      const left = cur[j - 1] + gap; if (left > best) { best = left; d = 3; }
+      cur[j] = best; dir[row + j] = d;
+    }
+    const t = prev; prev = cur; cur = t;
+  }
+  const score = prev[m];
+  let i = n, j = m;
+  const ra = [], rb = [];
+  while (i > 0 || j > 0) {
+    const d = dir[i * W + j];
+    if (d === 1)      { ra.push(a[i - 1]); rb.push(b[j - 1]); i--; j--; }
+    else if (d === 2) { ra.push(a[i - 1]); rb.push('-'); i--; }
+    else              { ra.push('-'); rb.push(b[j - 1]); j--; }
+  }
+  ra.reverse(); rb.reverse();
+  const A = ra.join(''), B = rb.join('');
+  let matches = 0, mismatches = 0, gaps = 0;
+  for (let k = 0; k < A.length; k++) {
+    if (A[k] === '-' || B[k] === '-') gaps++;
+    else if (A[k] === B[k]) matches++;
+    else mismatches++;
+  }
+  return { score, a: A, b: B, matches, mismatches, gaps, length: A.length,
+           identity: A.length ? matches / A.length : 0, ms: performance.now() - t0 };
+}
+
+/* Confirm a flagged locus: align the sample window against the reference allele
+   (wild-type where known, otherwise the panel allele) with 12 bp flanks. */
+function confirmLocus(seq, hit) {
+  const flank = 12, plen = hit.pattern.length;
+  const s0 = Math.max(0, hit.position - flank), s1 = Math.min(seq.length, hit.position + plen + flank);
+  const sampleWin = seq.slice(s0, s1);
+  const left = seq.slice(s0, hit.position), right = seq.slice(hit.position + plen, s1);
+  const wt = WILD_TYPE[hit.marker_id];
+  const refWin = left + (wt || hit.pattern) + right;
+  const r = needlemanWunsch(sampleWin, refWin);
+  return {
+    marker_id: hit.marker_id, position: hit.position, gene: hit.gene, disease: hit.disease,
+    refKind: wt ? 'Wild-type HBB allele' : 'Panel allele',
+    sampleWin, refWin, a: r.a, b: r.b, score: r.score, identity: r.identity,
+    matches: r.matches, mismatches: r.mismatches, gaps: r.gaps, ms: r.ms,
+    confirmed: wt ? r.mismatches + r.gaps >= 1 : r.identity === 1
+  };
+}
+/*==PURE_END==*/
+
+/* ==========================================================================
+   PART 2 — UI
+   ========================================================================== */
+const $ = (sel, root = document) => root.querySelector(sel);
+const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+const debounce = (fn, ms) => { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; };
+
+function toast(msg, type = '') {
+  const root = $('#toast-root');
+  const el = document.createElement('div');
+  el.className = 'toast' + (type ? ' toast-' + type : '');
+  const sp = document.createElement('span'); sp.textContent = msg; el.appendChild(sp);
+  root.appendChild(el);
+  while (root.children.length > 4) root.firstChild.remove();
+  setTimeout(() => el.remove(), 3500);
+}
+function fmtDate(ts) {
+  return new Date(ts).toLocaleString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+}
+function fmtMs(ms) {
+  if (!isFinite(ms)) return '—';
+  if (ms < 0.01) return '<10 µs';
+  return ms < 1 ? (ms * 1000).toFixed(0) + ' µs' : ms.toFixed(2) + ' ms';
+}
+
+/* ---- storage with in-memory cache (localStorage parsed once, not on every render) ---- */
+function sget(k, fallback) {
+  try { const raw = localStorage.getItem(NS + k); return raw ? JSON.parse(raw) : fallback; }
+  catch (e) { return fallback; }
+}
+function sset(k, val) {
+  try { localStorage.setItem(NS + k, JSON.stringify(val)); return true; }
+  catch (e) { console.warn('Storage write failed', k, e); return false; }
+}
+const memo = {};
+function cached(k, init) { if (!(k in memo)) memo[k] = sget(k, init()); return memo[k]; }
+function save(k, v) { memo[k] = v; sset(k, v); }
+
+const DEMO_DOCTORS = [
+  { id: 'doc_anna', name: 'Dr. Anna Reyes', email: 'anna@vitae.org', passcode: 'VG-ANNA-01', specialty: 'Hematology & Cardio-Genomics', avatar: 'AR' },
+  { id: 'doc_sean', name: 'Dr. Sean Coultard', email: 'sean@vitae.org', passcode: 'VG-SEAN-02', specialty: 'Pediatric Genetics', avatar: 'SC' },
+  { id: 'doc_maya', name: 'Dr. Maya Patel', email: 'maya@vitae.org', passcode: 'VG-MAYA-03', specialty: 'Molecular Genetics', avatar: 'MP' },
+  { id: 'doc_ryan', name: 'Dr. Ryan Vance', email: 'ryan@vitae.org', passcode: 'VG-RYAN-04', specialty: 'Neonatal Intensive Care', avatar: 'RV' },
+  { id: 'doc_elena', name: 'Dr. Elena Rostova', email: 'elena@vitae.org', passcode: 'VG-ELENA-05', specialty: 'Genomic Diagnostics', avatar: 'ER' },
+  { id: 'doc_alex', name: 'Dr. Alex Kim', email: 'alex@vitae.org', passcode: 'VG-ALEX-06', specialty: 'Clinical Genomics', avatar: 'AK' },
+  { id: 'doc_admin', name: 'System Administrator', email: 'admin@vitae.org', passcode: 'VG-ADMIN-99', specialty: 'Global Hospital Oversight', avatar: '⚙', isAdmin: true }
+];
+
+const INITIAL_PATIENTS = [
+  { id: 'p_01', name: 'Sophia Vance', mrn: 'VG-2026-0041', dob: '2026-08-10', sex: 'Female', gestation: '39w 2d', weight: 3240, doctorId: 'doc_anna', risk: 'high', condition: 'Sickle Cell Disease (HbS Homozygous)', sampleType: 'hbs-hom', notes: ['Screened positive for HbS variant.', 'Family counseling scheduled.'] },
+  { id: 'p_02', name: 'Garrett Miller', mrn: 'VG-2026-0042', dob: '2026-08-14', sex: 'Male', gestation: '40w 0d', weight: 3450, doctorId: 'doc_anna', risk: 'high', condition: 'Beta-Thalassemia Minor', sampleType: 'single-thal', notes: ['HBB promoter variant detected.', 'Pediatric hematology consult ordered.'] },
+  { id: 'p_03', name: 'Dean Ortiz', mrn: 'VG-2026-0043', dob: '2026-08-18', sex: 'Male', gestation: '38w 5d', weight: 3100, doctorId: 'doc_anna', risk: 'high', condition: 'Compound Sickle-Beta0 Thalassemia', sampleType: 'compound', notes: ['CRITICAL: Compound HbS + BetaThal co-occurrence.', 'Urgent transfusion protocol standby.'] },
+  { id: 'p_04', name: 'Maria Santos', mrn: 'VG-2026-0044', dob: '2026-08-22', sex: 'Female', gestation: '39w 4d', weight: 3320, doctorId: 'doc_anna', risk: 'low', condition: 'Normal Screening (Clean Sample)', sampleType: 'clean', notes: ['Full 40-marker panel passed.', 'Standard 6-week well-child checkup.'] },
+  { id: 'p_05', name: 'Lucas Chen', mrn: 'VG-2026-0051', dob: '2026-08-11', sex: 'Male', gestation: '40w 1d', weight: 3500, doctorId: 'doc_sean', risk: 'medium', condition: 'Cystic Fibrosis Carrier (CFTR deltaF508)', sampleType: 'cftr-carrier', notes: ['Single deltaF508 allele detected.', 'Carrier status explained to parents.'] },
+  { id: 'p_06', name: 'Oliver Smith', mrn: 'VG-2026-0052', dob: '2026-08-15', sex: 'Male', gestation: '39w 0d', weight: 3200, doctorId: 'doc_sean', risk: 'low', condition: 'Normal Screening', sampleType: 'clean', notes: ['All tests normal.'] },
+  { id: 'p_07', name: 'Emma Walsh', mrn: 'VG-2026-0053', dob: '2026-08-19', sex: 'Female', gestation: '38w 2d', weight: 2950, doctorId: 'doc_sean', risk: 'high', condition: 'Phenylketonuria (PAH variant)', sampleType: 'pku', notes: ['PAH R408W allele matched.', 'Low-Phe dietary regimen initiated.'] },
+  { id: 'p_08', name: 'Chloe Davis', mrn: 'VG-2026-0054', dob: '2026-08-23', sex: 'Female', gestation: '40w 2d', weight: 3410, doctorId: 'doc_sean', risk: 'low', condition: 'Normal Screening', sampleType: 'clean', notes: ['Clean panel.'] },
+  { id: 'p_09', name: 'Aarav Sharma', mrn: 'VG-2026-0061', dob: '2026-08-12', sex: 'Male', gestation: '39w 3d', weight: 3280, doctorId: 'doc_maya', risk: 'medium', condition: 'Spinal Muscular Atrophy Carrier (SMN1)', sampleType: 'smn1', notes: ['SMN1 exon 7 copy analysis normal. Carrier alert.'] },
+  { id: 'p_10', name: 'Liam Johnson', mrn: 'VG-2026-0062', dob: '2026-08-16', sex: 'Male', gestation: '38w 6d', weight: 3120, doctorId: 'doc_maya', risk: 'medium', condition: 'Sickle Cell Trait (HbAS)', sampleType: 'single-hbs', notes: ['HbAS trait confirmed.'] },
+  { id: 'p_11', name: 'Isabella Martinez', mrn: 'VG-2026-0063', dob: '2026-08-20', sex: 'Female', gestation: '40w 0d', weight: 3380, doctorId: 'doc_maya', risk: 'low', condition: 'Normal Screening', sampleType: 'clean', notes: ['Normal panel.'] },
+  { id: 'p_12', name: 'Noah Brown', mrn: 'VG-2026-0071', dob: '2026-08-13', sex: 'Male', gestation: '36w 4d', weight: 2600, doctorId: 'doc_ryan', risk: 'high', condition: 'Beta-Thalassemia Major', sampleType: 'single-thal', notes: ['NICU monitoring ongoing.'] },
+  { id: 'p_13', name: 'Ava Wilson', mrn: 'VG-2026-0072', dob: '2026-08-17', sex: 'Female', gestation: '39w 1d', weight: 3220, doctorId: 'doc_ryan', risk: 'low', condition: 'Normal Screening', sampleType: 'clean', notes: ['Discharged healthy.'] },
+  { id: 'p_14', name: 'Ethan Taylor', mrn: 'VG-2026-0073', dob: '2026-08-21', sex: 'Male', gestation: '39w 5d', weight: 3350, doctorId: 'doc_ryan', risk: 'medium', condition: 'G6PD Deficiency Variant', sampleType: 'g6pd', notes: ['Hemolytic trigger list provided.'] },
+  { id: 'p_15', name: 'Mia Anderson', mrn: 'VG-2026-0081', dob: '2026-08-14', sex: 'Female', gestation: '40w 1d', weight: 3420, doctorId: 'doc_elena', risk: 'low', condition: 'Normal Screening', sampleType: 'clean', notes: ['All tests clear.'] },
+  { id: 'p_16', name: 'Alexander Wright', mrn: 'VG-2026-0082', dob: '2026-08-18', sex: 'Male', gestation: '38w 4d', weight: 3080, doctorId: 'doc_elena', risk: 'high', condition: 'Sickle Cell Disease', sampleType: 'hbs-hom', notes: ['Hemoglobin electrophoresis confirmed.'] },
+  { id: 'p_17', name: 'Harper Thomas', mrn: 'VG-2026-0083', dob: '2026-08-22', sex: 'Female', gestation: '39w 3d', weight: 3270, doctorId: 'doc_elena', risk: 'low', condition: 'Normal Screening', sampleType: 'clean', notes: ['Clean results.'] },
+  { id: 'p_18', name: 'Benjamin White', mrn: 'VG-2026-0091', dob: '2026-08-15', sex: 'Male', gestation: '39w 2d', weight: 3190, doctorId: 'doc_alex', risk: 'medium', condition: 'Galactosemia Carrier (GALT)', sampleType: 'galt', notes: ['GALT enzyme assay baseline normal.'] },
+  { id: 'p_19', name: 'Charlotte Harris', mrn: 'VG-2026-0092', dob: '2026-08-19', sex: 'Female', gestation: '40w 0d', weight: 3390, doctorId: 'doc_alex', risk: 'low', condition: 'Normal Screening', sampleType: 'clean', notes: ['Normal newborn results.'] },
+  { id: 'p_20', name: 'Daniel Martin', mrn: 'VG-2026-0093', dob: '2026-08-23', sex: 'Male', gestation: '39w 4d', weight: 3310, doctorId: 'doc_alex', risk: 'low', condition: 'Normal Screening', sampleType: 'clean', notes: ['All negative.'] }
+];
+
+const getPatients = () => cached('patients', () => INITIAL_PATIENTS.map(p => ({ ...p })));
+const setPatients = (p) => save('patients', p);
+const getMarkers = () => { const m = cached('markers', () => REAL_MARKER_PANEL.map(x => ({ ...x }))); return Array.isArray(m) && m.length ? m : REAL_MARKER_PANEL; };
+const setMarkers = (m) => save('markers', m);
+const getScans = () => cached('scans', () => []);
+const setScans = (s) => save('scans', s);
+const getDoctors = () => cached('doctors_store', () => DEMO_DOCTORS.map(d => ({ ...d })));
+const getEvents = () => cached('events', () => []);
+
+function logEvent(text, level = '') {
+  const ev = getEvents();
+  ev.unshift({ t: now(), text, level, by: currentDoctor ? currentDoctor.name : 'System' });
+  save('events', ev.slice(0, 60));
+}
+
+function purgeExpiredData() {
+  const cutoff = now() - RETENTION_MS;
+  const scans = getScans(), keep = scans.filter(s => s.createdAt > cutoff);
+  if (keep.length !== scans.length) setScans(keep);
+  const ev = getEvents(), keepEv = ev.filter(e => e.t > cutoff);
+  if (keepEv.length !== ev.length) save('events', keepEv);
+  const session = sget('session', null);
+  if (session && now() > session.expiresAt) { try { localStorage.removeItem(NS + 'session'); } catch (e) {} }
+}
+
+/* ---------- state ---------- */
+let currentDoctor = null;
+let activeScanPanelSize = 40;
+let lastScanResult = null;
+let lastScanSeq = '';
+let scanSource = { mode: 'patient', fileName: '' };
+let activeDetailPatientId = null;
+let activeReportId = null;
+let benchRunning = false;
+
+/* ---------- auth ---------- */
+function setAuthMode(mode) {
+  $('#form-login').classList.toggle('hidden', mode !== 'login');
+  $('#form-signup').classList.toggle('hidden', mode !== 'signup');
+  $('#auth-tab-clinician').style.background = mode === 'login' ? 'var(--cyan-dim)' : 'transparent';
+  $('#auth-tab-signup').style.background = mode === 'signup' ? 'var(--teal-dim)' : 'transparent';
+  $('#auth-error').classList.add('hidden');
+}
+function fillCredentials(email, pass) {
+  $('#login-email').value = email;
+  $('#login-password').value = pass;
+  toast('Demo credentials auto-filled. Click Sign In.');
+}
+function authError(msg) { const e = $('#auth-error'); e.textContent = msg; e.classList.remove('hidden'); }
+function handleLogin(e) {
+  e.preventDefault();
+  const email = $('#login-email').value.trim().toLowerCase();
+  const pass = $('#login-password').value.trim();
+  const found = getDoctors().find(u => u.email.toLowerCase() === email && u.passcode === pass);
+  if (!found) { authError('Invalid credentials. Please select any demo clinician from the quick-access panel.'); return false; }
+  startSession(found, $('#login-remember').checked);
+  return false;
+}
+function handleSignup(e) {
+  e.preventDefault();
+  const name = $('#signup-name').value.trim(), dept = $('#signup-dept').value.trim();
+  const email = $('#signup-email').value.trim().toLowerCase(), pass = $('#signup-password').value;
+  const users = getDoctors();
+  if (users.find(u => u.email.toLowerCase() === email)) { authError('A clinician account with this email already exists.'); return false; }
+  const newDoc = { id: uid('doc'), name, email, passcode: pass, specialty: dept,
+    avatar: name.replace(/^Dr\.?\s*/i, '').split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase() || 'DR' };
+  users.push(newDoc);
+  save('doctors_store', users);
+  startSession(newDoc, true);
+  toast('Clinician profile registered successfully.');
+  return false;
+}
+function startSession(doc, remember) {
+  currentDoctor = doc;
+  sset('session', { docId: doc.id, expiresAt: now() + (remember ? RETENTION_MS : 4 * 60 * 60 * 1000) });
+  logEvent('Signed in to screening console.');
+  enterApp();
+}
+function logout() {
+  logEvent('Signed out.');
+  try { localStorage.removeItem(NS + 'session'); } catch (e) {}
+  location.reload();
+}
+function enterApp() {
+  $('#view-login').style.display = 'none';
+  $('#app-shell').classList.remove('hidden');
+  $('#current-user-name').textContent = currentDoctor.name;
+  $('#current-user-role').textContent = currentDoctor.specialty;
+  $('#current-user-avatar').textContent = currentDoctor.avatar || 'DR';
+  $('#nav-admin-section').style.display = currentDoctor.isAdmin ? 'block' : 'none';
+  populateDropdowns();
+  navigate('dashboard');
+}
+function populateDropdowns() {
+  const docs = getDoctors().filter(d => !d.isAdmin);
+  const opts = docs.map(d => `<option value="${esc(d.id)}">${esc(d.name)} (${esc(d.specialty)})</option>`).join('');
+  $('#patient-filter-doctor').innerHTML = '<option value="all">All Assigned Doctors</option>' + opts;
+  $('#form-p-doctor').innerHTML = opts;
+  $('#form-p-sample').innerHTML = Object.entries(GENOTYPES).map(([k, g]) => `<option value="${k}">${esc(g.label)}</option>`).join('');
+}
+
+/* ---------- navigation ---------- */
+const TITLES = {
+  dashboard: ['Doctor Dashboard', 'Assigned Patient Overview & Screening Telemetry'],
+  patients: ['Patient Caseload', 'Search, Filter & Manage Clinical Records'],
+  scanner: ['Run DNA Scanner', 'Aho-Corasick · KMP · Needleman–Wunsch Variant Detection'],
+  reports: ['Clinical Reports', 'Official Diagnostic Findings & Export'],
+  benchmarks: ['Engine Analytics', 'Performance Benchmarks & Telemetry'],
+  tracking: ['Alerts & Updates', 'Real-Time Notification Feed & Audit Stream'],
+  admin: ['Admin Console', 'Global Hospital Telemetry & Caseload Control'],
+  'patient-detail': ['Patient Medical History', 'Genomic Profile, Vitals & Clinical Notes']
+};
+let currentView = 'dashboard';
+function navigate(viewName) {
+  currentView = viewName;
+  $$('.view').forEach(v => v.classList.remove('active'));
+  const target = $('#view-' + viewName);
+  if (target) target.classList.add('active');
+  $$('.navlink').forEach(nl => nl.classList.toggle('active', nl.dataset.view === viewName));
+  const t = TITLES[viewName] || ['Vitae Guardians', 'Genomic Screening Console'];
+  $('#topbar-title').textContent = t[0];
+  $('#topbar-sub').textContent = t[1];
+  if (viewName === 'dashboard') renderDashboard();
+  if (viewName === 'patients') renderPatientList();
+  if (viewName === 'scanner') setupScannerView();
+  if (viewName === 'reports') renderReportsView();
+  if (viewName === 'benchmarks') renderBenchmarkView();
+  if (viewName === 'tracking') renderTrackingView();
+  if (viewName === 'admin') renderAdminView();
+  updateNavBadges();
+  window.scrollTo(0, 0);
+}
+function visiblePatients() {
+  const all = getPatients();
+  return currentDoctor && !currentDoctor.isAdmin ? all.filter(p => p.doctorId === currentDoctor.id) : all;
+}
+function updateNavBadges() {
+  const mine = visiblePatients();
+  $('#nav-patient-count').textContent = mine.length;
+  $('#nav-alert-count').textContent = mine.filter(p => p.risk === 'high').length;
+}
+
+/* ---------- dashboard ---------- */
+function renderDashboard() {
+  const my = visiblePatients();
+  const high = my.filter(p => p.risk === 'high').length, med = my.filter(p => p.risk === 'medium').length, low = my.filter(p => p.risk === 'low').length;
+  $('#dash-stat-patients').textContent = my.length;
+  $('#dash-stat-patients-sub').textContent = currentDoctor.isAdmin ? 'Total hospital cohort' : 'Assigned to ' + currentDoctor.name;
+  $('#dash-stat-highrisk').textContent = high;
+  $('#dash-stat-panelsize').textContent = getMarkers().length;
+  const scans = getScans();
+  $('#dash-stat-scantime').textContent = scans.length ? fmtMs(scans.reduce((a, s) => a + s.acMs, 0) / scans.length) : '—';
+  const box = $('#dashboard-patient-table-wrap');
+  if (!my.length) {
+    box.innerHTML = `<div style="text-align:center;padding:30px;color:var(--text-dim);">No patients currently assigned to your roster.</div>`;
+  } else {
+    box.innerHTML = `<table><thead><tr><th>Patient</th><th>MRN</th><th>Condition</th><th>Risk Tier</th><th>Actions</th></tr></thead><tbody>${
+      my.map(p => `<tr>
+        <td><div style="font-weight:700;color:var(--text-main);">${esc(p.name)}</div><div class="hint">DOB: ${esc(p.dob)} · ${esc(p.sex)}</div></td>
+        <td class="mono">${esc(p.mrn)}</td><td>${esc(p.condition)}</td>
+        <td><span class="pill pill-${riskClass(p.risk)}">${esc(p.risk.toUpperCase())}</span></td>
+        <td><div style="display:flex;gap:6px;">
+          <button class="btn btn-glass btn-sm" onclick="openPatientDetail('${esc(p.id)}')">Profile</button>
+          <button class="btn btn-cyan btn-sm" onclick="quickScanPatient('${esc(p.id)}')">Scan</button></div></td></tr>`).join('')
+    }</tbody></table>`;
+  }
+  $('#pie-count-high').textContent = high; $('#pie-count-med').textContent = med; $('#pie-count-low').textContent = low;
+  drawRiskDonutChart(high, med, low);
+}
+
+function chartInk() {
+  const day = document.body.classList.contains('day-mode');
+  return { day, text: day ? '#5c7a91' : '#8ca0c2', strong: day ? '#0b2230' : '#fff', grid: day ? 'rgba(11,34,48,0.10)' : 'rgba(31,230,230,0.10)' };
+}
+function setupCanvas(canvas, h) {
+  const dpr = window.devicePixelRatio || 1;
+  const w = Math.max(200, canvas.parentElement.clientWidth - 2 || 300);
+  canvas.width = w * dpr; canvas.height = h * dpr;
+  canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+  const ctx = canvas.getContext('2d');
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, w, h);
+  return { ctx, w, h };
+}
+function drawRiskDonutChart(high, med, low) {
+  const canvas = $('#chart-risk-pie'); if (!canvas) return;
+  const { ctx, w, h } = setupCanvas(canvas, 200);
+  const ink = chartInk();
+  const total = high + med + low;
+  const cx = w / 2, cy = h / 2, r = Math.min(cx, cy) - 20, ir = r * 0.65;
+  const data = total ? [{ c: high, col: '#ff6768' }, { c: med, col: '#ffb648' }, { c: low, col: '#2fe0a0' }] : [{ c: 1, col: ink.grid }];
+  const sum = total || 1;
+  let a0 = -Math.PI / 2;
+  data.forEach(s => {
+    if (!s.c) return;
+    const ang = (s.c / sum) * Math.PI * 2;
+    ctx.beginPath(); ctx.arc(cx, cy, r, a0, a0 + ang); ctx.arc(cx, cy, ir, a0 + ang, a0, true); ctx.closePath();
+    ctx.fillStyle = s.col; ctx.fill(); a0 += ang;
+  });
+  ctx.fillStyle = ink.strong; ctx.font = 'bold 20px Cinzel, serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText(total, cx, cy - 4);
+  ctx.fillStyle = ink.text; ctx.font = '10px Sora, sans-serif'; ctx.fillText('CASES', cx, cy + 14);
+}
+
+/* Quick screen on dashboard */
+function handleDashboardFileUpload(evt) {
+  const file = evt.target.files && evt.target.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => { $('#dash-quick-dna').value = reader.result; $('#dash-file-name').textContent = `${file.name} loaded`; toast('File loaded — click "Screen Now".'); };
+  reader.onerror = () => toast('Could not read that file.', 'high');
+  reader.readAsText(file);
+}
+function runQuickDashboardScan() {
+  const seq = parseDnaInput($('#dash-quick-dna').value), box = $('#dash-quick-result');
+  if (seq.length < 10) { box.innerHTML = '<div class="hint">Paste or upload at least 10 valid A/C/G/T bases first.</div>'; return; }
+  const panel = getMarkers(), eng = getEngines(panel);
+  const t0 = performance.now();
+  const raw = eng.ac.scan(encodeDna(seq), 5000);
+  const ms = performance.now() - t0;
+  const hits = normalizeHits(panel, raw.hits).filter(h => h.severity !== 'none');
+  const uniq = [...new Map(hits.map(h => [h.marker_id, h])).values()];
+  const info = `<div class="hint" style="margin-top:8px;">${seq.length.toLocaleString()} bp · ${panel.length} markers · ${fmtMs(ms)}</div>`;
+  if (!uniq.length) {
+    box.innerHTML = `<div class="pill pill-low" style="padding:10px 16px;font-size:13px;">✓ No flagged markers detected across all ${panel.length} screened conditions.</div>${info}`;
+  } else {
+    box.innerHTML = `<div class="pill pill-high" style="padding:10px 16px;font-size:13px;margin-bottom:10px;">⚠ ${uniq.length} condition${uniq.length > 1 ? 's' : ''} flagged</div>` +
+      uniq.map(h => `<div class="inset" style="display:flex;justify-content:space-between;gap:10px;align-items:center;border-radius:10px;padding:10px 14px;margin-bottom:8px;">
+        <div><b style="color:var(--text-main);">${esc(h.disease)}</b><div class="hint">Gene ${esc(h.gene)} · ${esc(h.mutation_type)} · bp ${hits.filter(x => x.marker_id === h.marker_id).slice(0, 3).map(x => x.position + 1).join(', ')}</div></div>
+        <span class="pill pill-${sevClass(h.severity)}">${esc(h.severity.toUpperCase())}</span></div>`).join('') + info;
+  }
+}
+
+/* ---------- patient management ---------- */
+function renderPatientList() {
+  const all = getPatients(), docs = getDoctors();
+  const q = ($('#patient-search-input')?.value || '').trim().toLowerCase();
+  const rf = $('#patient-filter-risk')?.value || 'all', df = $('#patient-filter-doctor')?.value || 'all';
+  const filtered = all.filter(p =>
+    (p.name.toLowerCase().includes(q) || p.mrn.toLowerCase().includes(q) || p.condition.toLowerCase().includes(q)) &&
+    (rf === 'all' || p.risk === rf) && (df === 'all' || p.doctorId === df));
+  const box = $('#patients-full-table-wrap');
+  if (!filtered.length) { box.innerHTML = `<div style="text-align:center;padding:40px;color:var(--text-dim);">No patient records match the selected query and filters.</div>`; return; }
+  box.innerHTML = `<table><thead><tr><th>Patient Name</th><th>MRN</th><th>DOB / Sex</th><th>Attending Doctor</th><th>Flagged Condition</th><th>Risk Tier</th><th>Actions</th></tr></thead><tbody>${
+    filtered.map(p => {
+      const doc = docs.find(d => d.id === p.doctorId) || { name: 'Unassigned' };
+      return `<tr>
+        <td><div style="font-weight:700;color:var(--text-main);">${esc(p.name)}</div><div class="hint">${esc(p.gestation)} · ${esc(p.weight)}g</div></td>
+        <td class="mono">${esc(p.mrn)}</td><td>${esc(p.dob)} (${esc(p.sex)})</td>
+        <td style="color:var(--cyan);font-weight:600;">${esc(doc.name)}</td><td>${esc(p.condition)}</td>
+        <td><span class="pill pill-${riskClass(p.risk)}">${esc(p.risk.toUpperCase())}</span></td>
+        <td><div style="display:flex;gap:6px;">
+          <button class="btn btn-glass btn-sm" onclick="openPatientDetail('${esc(p.id)}')">View</button>
+          <button class="btn btn-glass btn-sm" onclick="openEditPatientModal('${esc(p.id)}')">Edit</button>
+          <button class="btn btn-danger btn-sm" onclick="deletePatientRecord('${esc(p.id)}')">✕</button></div></td></tr>`;
+    }).join('')}</tbody></table>`;
+}
+function resetPatientFilters() {
+  $('#patient-search-input').value = ''; $('#patient-filter-risk').value = 'all'; $('#patient-filter-doctor').value = 'all';
+  renderPatientList();
+}
+let sampleTouched = false;
+function onPatientRiskChanged() {
+  if (sampleTouched || $('#form-patient-id').value) return;
+  const r = $('#form-p-risk').value;
+  $('#form-p-sample').value = r === 'high' ? 'hbs-hom' : r === 'medium' ? 'single-hbs' : 'clean';
+}
+function openPatientModal() {
+  $('#modal-patient-title').textContent = 'Register New Newborn Patient';
+  $('#form-patient').reset();
+  $('#form-patient-id').value = '';
+  sampleTouched = false;
+  $('#form-p-sample').value = 'clean';
+  $('#form-p-doctor').value = currentDoctor.isAdmin ? 'doc_anna' : currentDoctor.id;
+  $('#modal-patient').classList.remove('hidden');
+}
+function openEditPatientModal(id) {
+  const p = getPatients().find(x => x.id === id); if (!p) return;
+  $('#modal-patient-title').textContent = 'Edit Patient Record — ' + p.name;
+  $('#form-patient-id').value = p.id;
+  $('#form-p-name').value = p.name; $('#form-p-dob').value = p.dob; $('#form-p-sex').value = p.sex;
+  $('#form-p-gest').value = p.gestation; $('#form-p-weight').value = p.weight;
+  $('#form-p-doctor').value = p.doctorId; $('#form-p-risk').value = p.risk;
+  $('#form-p-condition').value = p.condition;
+  $('#form-p-sample').value = GENOTYPES[p.sampleType] ? p.sampleType : 'clean';
+  sampleTouched = true;
+  $('#modal-patient').classList.remove('hidden');
+}
+function closePatientModal() { $('#modal-patient').classList.add('hidden'); }
+function submitPatientForm(e) {
+  e.preventDefault();
+  const id = $('#form-patient-id').value, list = getPatients();
+  const base = {
+    name: $('#form-p-name').value.trim(), dob: $('#form-p-dob').value, sex: $('#form-p-sex').value,
+    gestation: $('#form-p-gest').value.trim(), weight: Number($('#form-p-weight').value),
+    doctorId: $('#form-p-doctor').value, risk: $('#form-p-risk').value,
+    condition: $('#form-p-condition').value.trim(), sampleType: $('#form-p-sample').value
+  };
+  if (id) {
+    const p = list.find(x => x.id === id);
+    if (p) {
+      if (p.sampleType !== base.sampleType) p.sampleNonce = 0;
+      Object.assign(p, base);
+      toast('Patient profile updated: ' + p.name); logEvent('Updated patient record: ' + p.name);
+    }
+  } else {
+    let mrn; do { mrn = 'VG-2026-' + Math.floor(1000 + Math.random() * 9000); } while (list.some(p => p.mrn === mrn));
+    list.unshift({ id: uid('p'), mrn, sampleNonce: 0, notes: ['Admitted to clinical screening cohort.'], ...base });
+    toast('New patient registered: ' + base.name); logEvent('Registered new patient: ' + base.name);
+  }
+  setPatients(list);
+  closePatientModal(); renderPatientList(); renderDashboard(); updateNavBadges();
+  return false;
+}
+function deletePatientRecord(id) {
+  const p = getPatients().find(x => x.id === id); if (!p) return;
+  if (confirm(`Confirm deletion of clinical record for ${p.name} (${p.mrn})?`)) {
+    setPatients(getPatients().filter(x => x.id !== id));
+    logEvent('Deleted patient record: ' + p.name, 'high');
+    toast('Patient record removed.', 'high');
+    renderPatientList(); renderDashboard(); updateNavBadges();
+  }
+}
+
+/* ---------- scanner ---------- */
+function setScanPanelSize(sz, btn) {
+  activeScanPanelSize = Number(sz);
+  $$('.scan-panel-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+}
+function setupScannerView() {
+  const patients = getPatients(), sel = $('#scan-patient-select');
+  const prev = sel.value;
+  const sig = patients.map(p => p.id + p.name + p.condition + p.risk).join('|');
+  if (sel.dataset.sig !== sig) {
+    sel.innerHTML = patients.map(p => `<option value="${esc(p.id)}">${esc(p.name)} (${esc(p.condition)}) — ${esc(p.risk.toUpperCase())}</option>`).join('');
+    sel.dataset.sig = sig;
+    if (prev && patients.some(p => p.id === prev)) sel.value = prev;
+  }
+  /* keep a pasted/uploaded sequence; only (re)generate when the textarea is empty or showing a patient sample */
+  if (scanSource.mode === 'patient' || !$('#scan-custom-dna').value.trim()) onScanPatientChanged();
+}
+function onScanPatientChanged() {
+  const p = getPatients().find(x => x.id === $('#scan-patient-select').value);
+  scanSource = { mode: 'patient', fileName: '' };
+  $('#scan-file-name').textContent = 'No file loaded';
+  if (!p) return;
+  const meta = makeSample(p.sampleType, p.id + '|' + p.mrn, p.sampleNonce || 0);
+  $('#scan-custom-dna').value = meta.seq;
+  renderSequencePreview(meta.seq);
+  const g = GENOTYPES[p.sampleType] || GENOTYPES.clean;
+  $('#scan-sample-info').textContent = `Dried-blood-spot sample #${(p.sampleNonce || 0) + 1} · ${meta.len.toLocaleString()} bp · GC ${(meta.gc * 100).toFixed(1)}% · seed ${meta.seed.toString(16).slice(0, 6)} · simulated genotype: ${g.label}`;
+}
+function drawNewSample() {
+  const list = getPatients(), p = list.find(x => x.id === $('#scan-patient-select').value);
+  if (!p) { toast('Select a patient first.', 'high'); return; }
+  p.sampleNonce = (p.sampleNonce || 0) + 1;
+  setPatients(list);
+  onScanPatientChanged();
+  $('#scan-results-panel').classList.add('hidden');
+  logEvent(`Drew new blood-spot sample #${p.sampleNonce + 1} for ${p.name}`);
+  toast(`New sample drawn for ${p.name} — completely different DNA, same genotype.`);
+}
+const onCustomDnaInput = debounce(() => {
+  const seq = parseDnaInput($('#scan-custom-dna').value);
+  scanSource = { mode: 'custom', fileName: scanSource.fileName };
+  renderSequencePreview(seq);
+  $('#scan-sample-info').textContent = `Custom sequence · ${seq.length.toLocaleString()} bp — results will be filed as "Custom Sequence".`;
+}, 200);
+
+function handleDnaFileUpload(evt) {
+  const file = evt.target.files && evt.target.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    const cleaned = parseDnaInput(reader.result);
+    if (cleaned.length < 10) { toast('That file had no usable A/C/G/T sequence.', 'high'); return; }
+    $('#scan-custom-dna').value = cleaned;
+    scanSource = { mode: 'custom', fileName: file.name };
+    $('#scan-file-name').textContent = `${file.name} · ${cleaned.length.toLocaleString()} bp loaded`;
+    $('#scan-sample-info').textContent = `Uploaded file · ${cleaned.length.toLocaleString()} bp — results will be filed as "Custom Sequence".`;
+    renderSequencePreview(cleaned);
+    toast('File loaded — click "Execute Triple-Engine Scan".');
+  };
+  reader.onerror = () => toast('Could not read that file.', 'high');
+  reader.readAsText(file);
+}
+
+function baseSpans(s) {
+  let h = '';
+  for (let i = 0; i < s.length; i++) h += `<span class="base-${s[i].toLowerCase()}">${s[i]}</span>`;
+  return h;
+}
+function renderSequencePreview(seq, hits) {
+  const box = $('#interactive-dna-preview'); if (!box) return;
+  $('#preview-length-badge').textContent = seq.length.toLocaleString() + ' bp';
+  if (!seq.length) { box.textContent = 'Select a sample or patient to load DNA nucleotides...'; return; }
+  let html = `<div class="hint">5′ end · bp 1–${Math.min(seq.length, 240)}</div>` + baseSpans(seq.slice(0, 240)) + (seq.length > 240 ? '…' : '');
+  const flagged = (hits || []).filter(h => h.severity !== 'none').slice(0, 8);
+  for (const h of flagged) {
+    const e0 = h.position, e1 = h.position + h.pattern.length, s0 = Math.max(0, e0 - 24), s1 = Math.min(seq.length, e1 + 24);
+    html += `<div class="hint" style="margin-top:10px;">${esc(h.gene)} · ${esc(h.disease)} @ bp ${e0 + 1}</div>` +
+      baseSpans(seq.slice(s0, e0)) + `<mark class="${h.severity === 'high' ? 'hit-variant' : 'hit-carrier'}">${seq.slice(e0, e1)}</mark>` + baseSpans(seq.slice(e1, s1));
+  }
+  if (!flagged.length && hits) html += `<div class="hint" style="margin-top:10px;">No flagged loci in this sequence.</div>`;
+  box.innerHTML = html;
+}
+
+async function executeDnaScan() {
+  const seq = parseDnaInput($('#scan-custom-dna').value);
+  if (seq.length < 10) { toast('Paste or upload a DNA sequence (at least 10 valid A/C/G/T bases) first.', 'high'); return; }
+  const btn = $('#btn-execute-scan');
+  btn.disabled = true;
+  $('#scan-progress-bar').classList.remove('hidden');
+  $('#scan-results-panel').classList.add('hidden');
+  const prog = (txt, pct) => { $('#scan-progress-text').textContent = txt; $('#scan-progress-fill').style.width = pct + '%'; $('#scan-progress-pct').textContent = pct + '%'; };
+  const tick = () => new Promise(r => setTimeout(r, 0));
+  try {
+    prog('Encoding nucleotide sequence…', 10); await tick();
+    const panel = getMarkers().slice(0, activeScanPanelSize);
+    const codes = encodeDna(seq);
+    prog('Compiling Aho-Corasick DFA…', 25); await tick();
+    const eng = getEngines(panel);
+    prog('Single-pass automaton traversal…', 45); await tick();
+    const acT = benchmarkRun(() => eng.ac.scan(codes, 5000));
+    prog('Running KMP baseline (one pass per marker)…', 65); await tick();
+    const kmpT = benchmarkRun(() => kmpScanAll(codes, eng.kmp, 5000));
+    const valid = sameHitSets(acT.result, kmpT.result);
+
+    const hits = normalizeHits(panel, acT.result.hits);
+    const pathogenic = hits.filter(h => h.severity !== 'none');
+    const controls = hits.filter(h => h.severity === 'none');
+    prog('Needleman–Wunsch locus confirmation…', 85); await tick();
+    const seen = new Set(), loci = [];
+    for (const h of pathogenic) { const k = h.marker_id + '@' + h.position; if (!seen.has(k) && loci.length < 12) { seen.add(k); loci.push(h); } }
+    const tN = performance.now();
+    const confirmations = loci.map(h => confirmLocus(seq, h));
+    const nwMs = performance.now() - tN;
+
+    const markerCount = {};
+    pathogenic.forEach(h => { markerCount[h.marker_id] = (markerCount[h.marker_id] || 0) + 1; });
+    const distinct = Object.keys(markerCount);
+    const compound = distinct.length >= 2;
+    const multiLocus = Object.values(markerCount).some(c => c >= 2);
+
+    let patient;
+    if (scanSource.mode === 'custom') patient = { id: 'custom', name: 'Custom Sequence', mrn: scanSource.fileName || 'UPLOAD', doctorId: currentDoctor.id };
+    else {
+      const p = getPatients().find(x => x.id === $('#scan-patient-select').value) || {};
+      patient = { id: p.id || 'custom', name: p.name || 'Unknown Sample', mrn: p.mrn || '—', doctorId: p.doctorId || currentDoctor.id, sampleNo: (p.sampleNonce || 0) + 1 };
+    }
+    lastScanResult = {
+      id: uid('scan'), patient, doctorId: currentDoctor.id, source: scanSource.mode, panelSize: panel.length, seqLen: seq.length,
+      createdAt: now(), acMs: acT.avgMs, kmpMs: kmpT.avgMs, nwMs, acBuildMs: eng.acBuildMs,
+      valid, compound, multiLocus, tier: tierFromHits(pathogenic), totalHits: acT.result.total,
+      matches: pathogenic.slice(0, 100), controls: controls.length,
+      confirmations: confirmations.map(c => ({ marker_id: c.marker_id, position: c.position, gene: c.gene, disease: c.disease, refKind: c.refKind,
+        sampleWin: c.sampleWin, refWin: c.refWin, a: c.a, b: c.b, score: c.score, identity: c.identity, matches: c.matches, mismatches: c.mismatches, gaps: c.gaps, confirmed: c.confirmed }))
+    };
+    lastScanSeq = seq;
+    const scans = getScans(); scans.unshift(lastScanResult); setScans(scans.slice(0, 30));
+    logEvent(`DNA scan of ${patient.name}: ${pathogenic.length} flagged loci in ${seq.length.toLocaleString()} bp (AC ${fmtMs(acT.avgMs)}, KMP ${fmtMs(kmpT.avgMs)}, NW ${fmtMs(nwMs)})`, pathogenic.length ? 'high' : '');
+    prog('Done', 100);
+    displayScanResults(lastScanResult);
+    renderSequencePreview(seq, hits);
+    prefillAlignmentLab();
+    updateNavBadges();
+    toast(compound ? '⚠ Compound genetic condition detected!' : pathogenic.length ? 'Scan complete — variant(s) flagged.' : 'DNA scan completed — no variants.', compound ? 'high' : '');
+  } catch (err) {
+    console.error(err);
+    toast('Scan failed: ' + err.message, 'high');
+  } finally {
+    btn.disabled = false;
+    $('#scan-progress-bar').classList.add('hidden');
+  }
+}
+
+function confirmText(c) {
+  if (!c) return '—';
+  const pct = (c.identity * 100).toFixed(1) + '%';
+  if (c.refKind.startsWith('Wild')) return `${pct} vs wild-type · ${c.mismatches} substitution${c.mismatches === 1 ? '' : 's'}${c.gaps ? ', ' + c.gaps + ' gap' : ''}`;
+  return `${pct} · exact allele (score ${c.score})`;
+}
+function displayScanResults(res) {
+  $('#scan-results-panel').classList.remove('hidden');
+  $('#res-ac-time').textContent = fmtMs(res.acMs);
+  $('#res-kmp-time').textContent = fmtMs(res.kmpMs);
+  const ratio = res.kmpMs / (res.acMs || 1e-6);
+  $('#res-speedup-ratio').textContent = ratio >= 1 ? `${ratio.toFixed(1)}× slower than Aho-Corasick over ${res.panelSize} markers` : `${(1 / ratio).toFixed(1)}× faster than Aho-Corasick`;
+  $('#res-ac-sub').textContent = `${res.seqLen.toLocaleString()} bp · one pass · DFA build ${fmtMs(res.acBuildMs)}`;
+  $('#res-correctness-badge').innerHTML = res.valid
+    ? `<span class="pill pill-low">✓ 100% Agreement</span>` : `<span class="pill pill-high">✗ Engine mismatch</span>`;
+  $('#res-correctness-sub').textContent = `Aho-Corasick = KMP · ${res.totalHits} raw hit${res.totalHits === 1 ? '' : 's'} compared by marker & position`;
+  const nConf = res.confirmations.filter(c => c.confirmed).length;
+  $('#res-nw-time').textContent = res.confirmations.length ? fmtMs(res.nwMs) : '—';
+  $('#res-nw-sub').textContent = res.confirmations.length ? `${nConf}/${res.confirmations.length} loci confirmed by global alignment` : 'No flagged loci to align';
+
+  $('#res-compound-alert').innerHTML = res.compound
+    ? `<span class="pill pill-high">⚠ Compound Condition Detected</span>`
+    : res.multiLocus ? `<span class="pill pill-high">⚠ Multiple Copies of Same Variant</span>`
+    : res.matches.length ? `<span class="pill pill-high">Flagged Variant Present</span>` : `<span class="pill pill-low">Normal / Clean</span>`;
+
+  const cmap = Object.fromEntries(res.confirmations.map(c => [c.marker_id + '@' + c.position, c]));
+  const mt = $('#res-matches-table-wrap');
+  if (!res.matches.length) {
+    mt.innerHTML = `<div style="text-align:center;padding:25px;color:var(--text-dim);">✓ No pathogenic variants detected against the ${res.panelSize}-marker panel.${res.panelSize < 40 ? '<br><span class="hint">Tip: smaller panels only include the first markers — choose 40 for full coverage.</span>' : ''}</div>`;
+    $('#res-cds-summary').textContent = 'Normal outcome. No immediate specialist intervention indicated.';
+  } else {
+    mt.innerHTML = `<table><thead><tr><th>Detected Condition</th><th>Gene</th><th>Mutation Class</th><th>Locus</th><th>Severity</th><th>Needleman–Wunsch Confirmation</th></tr></thead><tbody>${
+      res.matches.slice(0, 60).map(m => `<tr>
+        <td style="font-weight:700;color:var(--text-main);">${esc(m.disease)}</td>
+        <td class="mono" style="color:var(--cyan);">${esc(m.gene)}</td><td>${esc(m.mutation_type)}</td>
+        <td class="mono">bp ${m.position + 1}</td>
+        <td><span class="pill pill-${sevClass(m.severity)}">${esc(m.severity.toUpperCase())}</span></td>
+        <td><span class="pill pill-${cmap[m.marker_id + '@' + m.position]?.confirmed ? 'low' : 'soft'}">${esc(confirmText(cmap[m.marker_id + '@' + m.position]))}</span></td></tr>`).join('')
+    }</tbody></table>${res.totalHits > 60 ? `<div class="hint" style="margin-top:8px;">Showing first 60 of ${res.totalHits} hits.</div>` : ''}`;
+    $('#res-cds-summary').textContent = res.compound
+      ? 'CRITICAL ALERT: Compound mutations identified. Immediate pediatric hematology consult and confirmatory HPLC ordered.'
+      : res.multiLocus ? 'Pathogenic variant present at multiple loci (consistent with a homozygous / high-copy pattern). Confirmatory electrophoresis and genetic counseling recommended.'
+      : 'Pathogenic variant flagged. Recommended confirmatory diagnostic electrophoresis and genetic counseling.';
+  }
+  $('#res-nw-wrap').innerHTML = res.confirmations.length
+    ? res.confirmations.map(c => `<div style="margin-bottom:14px;">
+        <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:6px;">
+          <b style="color:var(--text-main);">${esc(c.disease)} <span class="hint">@ bp ${c.position + 1} · ref: ${esc(c.refKind)}</span></b>
+          <span class="pill pill-${c.confirmed ? 'low' : 'high'}">${(c.identity * 100).toFixed(1)}% identity · score ${c.score}</span></div>
+        ${renderAlignmentHtml({ a: c.a, b: c.b }, 60)}</div>`).join('')
+    : `<div class="hint">No flagged loci — nothing to align.</div>`;
+}
+
+function renderAlignmentHtml(r, block = 60) {
+  const A = r.a, B = r.b;
+  let html = '';
+  for (let i = 0; i < A.length; i += block) {
+    const sa = A.slice(i, i + block), sb = B.slice(i, i + block);
+    let la = '', lm = '', lb = '';
+    for (let k = 0; k < sa.length; k++) {
+      const x = sa[k], y = sb[k];
+      if (x === y) { la += x; lm += '|'; lb += y; }
+      else if (x === '-' || y === '-') { la += `<span class="aln-gap">${x}</span>`; lm += ' '; lb += `<span class="aln-gap">${y}</span>`; }
+      else { la += `<span class="aln-mm">${x}</span>`; lm += '·'; lb += `<span class="aln-mm">${y}</span>`; }
+    }
+    html += `Sample  ${la}\n        ${lm}\nRef     ${lb}\n\n`;
+  }
+  return `<div class="align-box">${html.trimEnd()}</div>`;
+}
+function prefillAlignmentLab() {
+  const c = lastScanResult && lastScanResult.confirmations[0];
+  if (!c) return;
+  $('#lab-seq-a').value = c.sampleWin; $('#lab-seq-b').value = c.refWin;
+  runAlignmentLab(true);
+}
+function loadLabFromScan() {
+  if (!lastScanResult || !lastScanResult.confirmations.length) { toast('Run a scan with at least one flagged locus first.', 'high'); return; }
+  prefillAlignmentLab();
+}
+function runAlignmentLab(silent) {
+  const a = parseDnaInput($('#lab-seq-a').value), b = parseDnaInput($('#lab-seq-b').value), out = $('#lab-result');
+  if (!a.length || !b.length) { out.innerHTML = '<div class="hint">Enter two DNA sequences to align.</div>'; return; }
+  const opts = { match: Number($('#lab-match').value), mismatch: Number($('#lab-mismatch').value), gap: Number($('#lab-gap').value) };
+  try {
+    const r = needlemanWunsch(a, b, opts);
+    const shown = r.length > 1500
+      ? `<div class="hint">Alignment is ${r.length.toLocaleString()} columns long — showing the first 1,500.</div>` + renderAlignmentHtml({ a: r.a.slice(0, 1500), b: r.b.slice(0, 1500) }, 60)
+      : renderAlignmentHtml(r, 60);
+    out.innerHTML = `<div style="display:flex;gap:8px;flex-wrap:wrap;margin:12px 0;">
+      <span class="pill pill-cyan">Score ${r.score}</span><span class="pill pill-low">${(r.identity * 100).toFixed(1)}% identity</span>
+      <span class="pill pill-soft">${r.matches} matches</span><span class="pill pill-high">${r.mismatches} mismatches</span>
+      <span class="pill pill-med">${r.gaps} gaps</span><span class="pill pill-soft">${a.length}×${b.length} bp · ${fmtMs(r.ms)}</span></div>` + shown;
+    if (!silent) toast('Needleman–Wunsch alignment complete.');
+  } catch (err) { out.innerHTML = `<div class="pill pill-high" style="padding:10px 14px;">${esc(err.message)}</div>`; }
+}
+
+function quickScanPatient(pId) {
+  navigate('scanner');
+  const sel = $('#scan-patient-select');
+  sel.value = pId;
+  onScanPatientChanged();
+}
+function exportCurrentScanJson() {
+  if (!lastScanResult) return;
+  downloadFile(new Blob([JSON.stringify(lastScanResult, null, 2)], { type: 'application/json' }), `vitae-scan-${lastScanResult.id}.json`);
+}
+function generateOfficialReportFromScan() {
+  if (lastScanResult) activeReportId = lastScanResult.id;
+  navigate('reports');
+}
+
+/* ---------- patient detail ---------- */
+function openPatientDetail(pId) {
+  activeDetailPatientId = pId;
+  const p = getPatients().find(x => x.id === pId); if (!p) return;
+  navigate('patient-detail');
+  const doc = getDoctors().find(d => d.id === p.doctorId) || { name: 'Unassigned' };
+  $('#detail-name').textContent = p.name;
+  $('#detail-mrn').textContent = 'MRN: ' + p.mrn;
+  $('#detail-avatar').textContent = p.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+  $('#detail-dob').textContent = p.dob;
+  $('#detail-sex').textContent = p.sex;
+  $('#detail-gestation').textContent = p.gestation;
+  $('#detail-weight').textContent = `${Number(p.weight).toLocaleString()} grams`;
+  $('#detail-doctor').textContent = doc.name;
+  $('#detail-condition').textContent = p.condition;
+  $('#detail-risk-badge').innerHTML = `<span class="pill pill-${riskClass(p.risk)}">${esc(p.risk.toUpperCase())} RISK</span>`;
+  const myScans = getScans().filter(s => s.patient && s.patient.id === p.id);
+  const items = [
+    { t: p.dob + ' 08:30', h: 'Dried Blood Spot (DBS) Sample Collected', d: 'Capillary heel-prick sample transferred to screening lab.' },
+    { t: p.dob + ' 11:15', h: 'Initial Screening Result Recorded', d: `${esc(p.condition)} (${esc(p.risk.toUpperCase())} RISK)` },
+    ...myScans.slice().reverse().map(s => ({ t: fmtDate(s.createdAt), h: `DNA Scan · sample #${s.patient.sampleNo || 1}`, d: `${s.matches.length} flagged loci · derived tier ${esc(s.tier.toUpperCase())} · AC ${fmtMs(s.acMs)} · NW ${s.confirmations.length} loci aligned` }))
+  ];
+  $('#detail-timeline-wrap').innerHTML = `<div style="border-left:2px solid var(--cyan);padding-left:16px;display:flex;flex-direction:column;gap:14px;margin-top:10px;">${
+    items.map(i => `<div><div style="font-size:11px;color:var(--cyan);font-weight:700;">${esc(i.t)}</div><div style="font-weight:700;color:var(--text-main);">${esc(i.h)}</div><div class="hint">${i.d}</div></div>`).join('')}</div>`;
+  renderPatientNotes(p);
+  const ap = $('#detail-action-plan');
+  if (p.risk === 'high') ap.innerHTML = `<div style="color:var(--risk-high);font-weight:700;margin-bottom:6px;">🚨 Urgent Specialist Referral Protocol</div>1. Immediate pediatric hematology consult within 48 hours.<br>2. Confirmatory HPLC and secondary Sanger sequencing validation.<br>3. Parental genetic counseling regarding inheritance pattern.`;
+  else if (p.risk === 'medium') ap.innerHTML = `<div style="color:var(--risk-med);font-weight:700;margin-bottom:6px;">⚠ Carrier Surveillance Protocol</div>1. Explain carrier genetics to family.<br>2. Document in newborn health record.<br>3. Follow up at 6-month pediatric milestone check.`;
+  else ap.innerHTML = `<div style="color:var(--risk-low);font-weight:700;margin-bottom:6px;">✓ Routine Neonatal Care Protocol</div>1. All panel variant targets returned negative.<br>2. Standard well-child discharge plan approved.`;
+}
+function renderPatientNotes(p) {
+  const docName = (getDoctors().find(d => d.id === p.doctorId) || {}).name || 'Attending';
+  $('#detail-notes-list').innerHTML = (p.notes || []).map(n => {
+    const o = typeof n === 'string' ? { text: n, by: docName } : n;
+    return `<div class="inset" style="padding:9px 12px;border-radius:var(--radius-md);margin-bottom:8px;">
+      <div style="font-size:13px;color:var(--text-main);">${esc(o.text)}</div>
+      <div style="font-size:10.5px;color:var(--text-dim);margin-top:3px;">Logged by ${esc(o.by)}${o.at ? ' · ' + fmtDate(o.at) : ''}</div></div>`;
+  }).join('');
+}
+function addDoctorNote() {
+  const input = $('#detail-new-note-input'), text = (input.value || '').trim();
+  if (!text || !activeDetailPatientId) return;
+  const list = getPatients(), p = list.find(x => x.id === activeDetailPatientId);
+  if (!p) return;
+  (p.notes || (p.notes = [])).push({ text, by: currentDoctor.name, at: now() });
+  setPatients(list); input.value = '';
+  renderPatientNotes(p); logEvent('Clinical note added for ' + p.name);
+  toast('Physician clinical note saved.');
+}
+function openEditCurrentPatient() { if (activeDetailPatientId) openEditPatientModal(activeDetailPatientId); }
+function runScanForCurrentPatient() { if (activeDetailPatientId) quickScanPatient(activeDetailPatientId); }
+
+/* ---------- reports ---------- */
+function visibleScans() {
+  const scans = getScans();
+  return currentDoctor.isAdmin ? scans : scans.filter(s => s.doctorId === currentDoctor.id || (s.patient && s.patient.doctorId === currentDoctor.id));
+}
+function renderReportsView() {
+  const scans = visibleScans(), box = $('#reports-list-wrap');
+  if (!scans.length) {
+    box.innerHTML = `<div style="text-align:center;padding:26px;color:var(--text-dim);">No reports yet. Run a DNA scan to generate one.<br><br><button class="btn btn-cyan btn-sm" onclick="navigate('scanner')">Go to DNA Scanner →</button></div>`;
+    $('#report-render-target').innerHTML = `<div class="hint" style="padding:30px;text-align:center;">Select or generate a report to preview it here.</div>`;
+    return;
+  }
+  if (!scans.some(s => s.id === activeReportId)) activeReportId = scans[0].id;
+  box.innerHTML = scans.map(s => `
+    <div class="inset" style="display:flex;align-items:center;justify-content:space-between;padding:12px;border-radius:var(--radius-md);margin-bottom:8px;cursor:pointer;border:1px solid ${s.id === activeReportId ? 'var(--cyan)' : 'var(--line-soft)'};" onclick="selectReport('${esc(s.id)}')">
+      <div><div style="font-weight:700;color:var(--text-main);">${esc(s.patient.name)} <span class="hint">(${esc(s.patient.mrn)})</span></div>
+      <div class="hint">${fmtDate(s.createdAt)} · ${s.panelSize} markers · ${s.seqLen.toLocaleString()} bp</div></div>
+      <span class="pill pill-${s.compound ? 'high' : (s.matches.length ? 'med' : 'low')}">${s.compound ? 'COMPOUND' : (s.matches.length ? 'FLAGGED' : 'NORMAL')}</span></div>`).join('');
+  selectReport(activeReportId, true);
+}
+function selectReport(scanId, skipList) {
+  activeReportId = scanId;
+  const scan = getScans().find(s => s.id === scanId); if (!scan) return;
+  if (!skipList) renderReportsView();
+  const doc = getDoctors().find(d => d.id === (scan.patient.doctorId || scan.doctorId)) || currentDoctor;
+  const cmap = Object.fromEntries(scan.confirmations.map(c => [c.marker_id + '@' + c.position, c]));
+  const status = scan.compound ? 'CRITICAL COMPOUND ALERT' : scan.matches.length ? 'PATHOGENIC VARIANT' : 'NORMAL / CLEAN';
+  $('#report-render-target').innerHTML = `
+    <div style="border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:18px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
+        <div><h2 style="font-size:20px;">Official Clinician Genetic Screening Report</h2>
+        <div class="hint">Vitae Guardians Autonomous Newborn Screening Unit</div></div>
+        <span class="pill pill-${scan.matches.length ? 'high' : 'low'}">${status}</span></div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;font-size:13px;">
+      <div><b>Patient:</b> ${esc(scan.patient.name)} (${esc(scan.patient.mrn)})</div>
+      <div><b>Screening Date:</b> ${fmtDate(scan.createdAt)}</div>
+      <div><b>Engines:</b> Aho-Corasick · KMP parity · Needleman–Wunsch</div>
+      <div><b>Panel / Sequence:</b> ${scan.panelSize} markers · ${scan.seqLen.toLocaleString()} bp</div>
+      <div><b>Timings:</b> AC ${fmtMs(scan.acMs)} · KMP ${fmtMs(scan.kmpMs)} · NW ${fmtMs(scan.nwMs)}</div>
+      <div><b>Engine parity:</b> ${scan.valid ? '✓ AC = KMP' : '✗ mismatch'}</div></div>
+    <h4 style="margin-bottom:8px;">Genomic Marker Findings:</h4>
+    ${!scan.matches.length ? '<p style="color:var(--risk-low);">✓ No known pathogenic variants flagged across the panel.</p>' : `
+      <table><thead><tr><th>Disease</th><th>Gene</th><th>Locus</th><th>Severity</th><th>NW check</th></tr></thead><tbody>${
+        scan.matches.slice(0, 40).map(m => `<tr><td style="font-weight:700;color:var(--text-main);">${esc(m.disease)}</td>
+          <td class="mono" style="color:var(--cyan);">${esc(m.gene)}</td><td class="mono">bp ${m.position + 1}</td>
+          <td><span class="pill pill-${sevClass(m.severity)}">${esc(m.severity.toUpperCase())}</span></td>
+          <td>${esc(confirmText(cmap[m.marker_id + '@' + m.position]))}</td></tr>`).join('')}</tbody></table>`}
+    <div class="inset" style="margin-top:20px;padding:14px;border-radius:var(--radius-md);font-size:12.5px;">
+      <b>Attending clinician:</b> ${esc(doc.name)} (${esc(doc.specialty)}).<br>
+      <i>Disclaimer: This autonomous genomics screening prototype is intended for rapid clinical triage and research verification. Results require confirmatory laboratory testing.</i></div>
+    <div class="no-print" style="display:flex;gap:10px;margin-top:20px;">
+      <button class="btn btn-cyan" onclick="printCurrentReport()">🖨 Print / Export PDF</button>
+      <button class="btn btn-glass" onclick="exportScanJsonById('${esc(scan.id)}')">Export JSON</button></div>`;
+}
+function printCurrentReport() {
+  $('#print-target').innerHTML = $('#report-render-target').innerHTML;
+  window.print();
+}
+function exportScanJsonById(id) {
+  const s = getScans().find(x => x.id === id);
+  if (s) downloadFile(new Blob([JSON.stringify(s, null, 2)], { type: 'application/json' }), `report-${s.id}.json`);
+}
+
+/* ---------- benchmarks ---------- */
+function getBenchPanel(size) {
+  const base = getMarkers();
+  if (size <= base.length) return base.slice(0, size);
+  const out = base.slice(), r = mulberry32(4242);
+  let k = 0;
+  while (out.length < size) {
+    let p = ''; for (let i = 0; i < 21; i++) p += BASES[(r() * 4) | 0];
+    out.push({ id: 'BENCH_' + (++k), pattern: p, gene: 'SYN', disease: 'Benchmark filler', mutation_type: '—', severity: 'low', synthetic: true });
+  }
+  return out;
+}
+async function runFullLiveBenchmark(silent) {
+  if (benchRunning) return;
+  benchRunning = true;
+  const btn = $('#btn-run-bench'); if (btn) btn.disabled = true;
+  if (!silent) toast('Running live scaling test (5 → 80 markers, 25,000 bp)…');
+  try {
+    const codes = encodeDna(randomDna(25000, 777));
+    const sizes = [5, 10, 20, 40, 80], data = { sizes, ac: [], kmp: [], parity: true, seqLen: 25000, at: now() };
+    for (const sz of sizes) {
+      const eng = getEngines(getBenchPanel(sz));
+      const a = benchmarkRun(() => eng.ac.scan(codes, 0), 10);
+      const k = benchmarkRun(() => kmpScanAll(codes, eng.kmp, 0), 10);
+      if (a.result.total !== k.result.total) data.parity = false;
+      data.ac.push(a.avgMs); data.kmp.push(k.avgMs);
+      await new Promise(r => setTimeout(r, 0));
+    }
+    save('bench', data);
+    if (currentView === 'benchmarks') renderBenchmarkView(true);
+    if (!silent) toast('Empirical scaling benchmark completed.');
+  } finally { benchRunning = false; if (btn) btn.disabled = false; }
+}
+function drawLineChart(canvas, labels, series) {
+  const { ctx, w, h } = setupCanvas(canvas, 240);
+  const ink = chartInk();
+  const pad = { top: 26, right: 24, bottom: 36, left: 62 };
+  const pw = w - pad.left - pad.right, ph = h - pad.top - pad.bottom;
+  const maxRaw = Math.max(...series.flatMap(s => s.data), 0.001);
+  const mag = Math.pow(10, Math.floor(Math.log10(maxRaw))), step = [1, 2, 2.5, 5, 10].map(m => m * mag).find(s => maxRaw / s <= 5) || mag * 10;
+  const maxVal = Math.ceil(maxRaw / step) * step;
+  ctx.font = '11px IBM Plex Mono, monospace'; ctx.lineWidth = 1;
+  ctx.textAlign = 'right'; ctx.fillStyle = ink.text;
+  for (let v = 0; v <= maxVal + 1e-9; v += step) {
+    const y = pad.top + ph - (v / maxVal) * ph;
+    ctx.strokeStyle = ink.grid; ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(pad.left + pw, y); ctx.stroke();
+    ctx.fillText(fmtMs(v), pad.left - 8, y + 4);
+  }
+  ctx.textAlign = 'center';
+  const gx = i => pad.left + (pw / (labels.length - 1)) * i, gy = v => pad.top + ph - (v / maxVal) * ph;
+  labels.forEach((l, i) => ctx.fillText(l, gx(i), pad.top + ph + 20));
+  series.forEach((s, si) => {
+    ctx.strokeStyle = s.color; ctx.lineWidth = 2.5; ctx.beginPath();
+    s.data.forEach((v, i) => i ? ctx.lineTo(gx(i), gy(v)) : ctx.moveTo(gx(i), gy(v))); ctx.stroke();
+    ctx.fillStyle = s.color; s.data.forEach((v, i) => { ctx.beginPath(); ctx.arc(gx(i), gy(v), 4, 0, 6.2832); ctx.fill(); });
+    ctx.textAlign = 'left'; ctx.fillText('● ' + s.name, pad.left + 8 + si * 150, 14);
+  });
+}
+function drawDiseaseBarChart() {
+  const canvas = $('#chart-disease-bar'); if (!canvas) return;
+  const { ctx, w, h } = setupCanvas(canvas, 200);
+  const ink = chartInk();
+  const counts = {};
+  getPatients().forEach(p => { const c = (GENOTYPES[p.sampleType] || GENOTYPES.clean).category; counts[c] = (counts[c] || 0) + 1; });
+  const cats = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 8);
+  const colors = ['#ff6768', '#ffb648', '#6f7bff', '#22c9b8', '#4fd8ff', '#c9b6ff', '#2fe0a0', '#ff8fb1'];
+  const max = Math.max(...cats.map(c => c[1]), 1), bw = (w - 40) / cats.length;
+  ctx.textAlign = 'center'; ctx.font = '10px Sora, sans-serif';
+  cats.forEach(([label, n], i) => {
+    const x = 20 + i * bw, bh = (n / max) * (h - 56), y = h - 30 - bh;
+    ctx.fillStyle = colors[i % colors.length]; ctx.fillRect(x + 6, y, bw - 12, bh);
+    ctx.fillStyle = ink.text; ctx.fillText(n, x + bw / 2, y - 5); ctx.fillText(label.slice(0, 11), x + bw / 2, h - 12);
+  });
+}
+function renderBenchmarkView(skipAuto) {
+  const bench = sget('bench', null);
+  if (bench) drawLineChart($('#chart-benchmark-canvas'), bench.sizes.map(s => s + ' Markers'), [
+    { name: 'Aho-Corasick', color: '#1fe6e6', data: bench.ac }, { name: 'KMP baseline', color: '#ff6768', data: bench.kmp }]);
+  else { setupCanvas($('#chart-benchmark-canvas'), 240); }
+  drawDiseaseBarChart();
+  const scans = getScans();
+  const okParity = scans.filter(s => s.valid).length;
+  const row = (l, r) => `<div style="display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid var(--line-soft);font-size:13px;"><span>${l}</span>${r}</div>`;
+  $('#benchmark-telemetry-list').innerHTML =
+    row('Aho-Corasick DFA engine', '<span class="pill pill-low">OPERATIONAL</span>') +
+    row('Knuth-Morris-Pratt baseline', '<span class="pill pill-low">OPERATIONAL</span>') +
+    row('Needleman–Wunsch aligner', '<span class="pill pill-low">OPERATIONAL</span>') +
+    row('Engine parity (stored scans)', `<span class="pill pill-${scans.length && okParity < scans.length ? 'high' : 'low'}">${okParity}/${scans.length} MATCH</span>`) +
+    (bench ? row(`Last live benchmark · ${bench.seqLen.toLocaleString()} bp`, `<span class="pill pill-cyan">80 markers: ${(bench.kmp[4] / bench.ac[4]).toFixed(1)}× faster</span>`) : row('Live benchmark', '<span class="pill pill-soft">running…</span>')) +
+    row('7-Day rolling storage TTL', '<span class="pill pill-cyan">ACTIVE</span>');
+  $('#validation-audit-table-wrap').innerHTML = !scans.length ? '<p class="hint">No scans executed yet.</p>' :
+    `<table><thead><tr><th>Patient</th><th>Markers</th><th>AC</th><th>KMP</th><th>NW</th><th>Parity</th></tr></thead><tbody>${
+      scans.slice(0, 15).map(s => `<tr><td>${esc(s.patient.name)}</td><td>${s.panelSize}</td><td style="color:var(--cyan);">${fmtMs(s.acMs)}</td><td>${fmtMs(s.kmpMs)}</td>
+        <td>${s.confirmations.length ? fmtMs(s.nwMs) : '—'}</td><td><span class="pill pill-${s.valid ? 'low' : 'high'}">${s.valid ? '✓ MATCH' : '✗'}</span></td></tr>`).join('')}</tbody></table>`;
+  if (!bench && !skipAuto && !benchRunning) setTimeout(() => runFullLiveBenchmark(true), 30);
+}
+
+/* ---------- tracking ---------- */
+function renderTrackingView() {
+  const my = visiblePatients().filter(p => p.risk === 'high').slice(0, 6);
+  const scans = visibleScans().slice(0, 5);
+  const alerts = [
+    ...scans.map(s => ({ title: s.matches.length ? `Scan flagged ${s.matches.length} locus/loci — ${s.patient.name}` : `Clean DNA scan — ${s.patient.name}`,
+      body: `${s.panelSize}-marker scan of ${s.seqLen.toLocaleString()} bp · tier ${s.tier.toUpperCase()} · NW confirmed ${s.confirmations.filter(c => c.confirmed).length}/${s.confirmations.length}`,
+      time: fmtDate(s.createdAt), type: s.compound ? 'high' : s.matches.length ? 'med' : 'low' })),
+    ...my.map(p => ({ title: `High-risk patient: ${p.name}`, body: `${p.condition} (MRN ${p.mrn}) is on the active high-risk caseload.`, time: 'Active', type: 'high' }))
+  ];
+  $('#tracking-inbox-list').innerHTML = alerts.length ? alerts.map(a => `
+    <div class="card card-glow-${a.type === 'high' ? 'violet' : a.type === 'med' ? 'cyan' : 'teal'}" style="margin-bottom:12px;padding:16px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+        <span class="pill pill-${riskClass(a.type === 'med' ? 'medium' : a.type)}">${a.type.toUpperCase()} ALERT</span><span class="hint">${esc(a.time)}</span></div>
+      <div style="font-weight:700;color:var(--text-main);font-size:14px;">${esc(a.title)}</div>
+      <p style="font-size:13px;margin-top:4px;">${esc(a.body)}</p></div>`).join('') : '<div class="hint">No alerts.</div>';
+  const ev = getEvents().slice(0, 25);
+  $('#tracking-activity-feed').innerHTML = ev.length ? ev.map(e => `
+    <div style="display:flex;gap:10px;font-size:12.5px;border-left:2px solid ${e.level === 'high' ? 'var(--risk-high)' : 'var(--cyan)'};padding-left:10px;">
+      <span style="color:var(--cyan);font-family:var(--font-mono);white-space:nowrap;">${fmtDate(e.t)}</span>
+      <span style="color:var(--text-soft);">${esc(e.text)} <span class="hint">· ${esc(e.by)}</span></span></div>`).join('') : '<div class="hint">No activity recorded yet.</div>';
+}
+
+/* ---------- admin ---------- */
+function renderAdminView() {
+  const doctors = getDoctors().filter(d => !d.isAdmin), patients = getPatients(), markers = getMarkers();
+  $('#admin-stat-doctors').textContent = doctors.length;
+  $('#admin-stat-patients').textContent = patients.length;
+  $('#admin-stat-scans').textContent = getScans().length;
+  $('#admin-stat-markers').textContent = markers.length;
+  $('#admin-doc-count').textContent = doctors.length + ' Active Doctors';
+  $('#admin-doctors-table-wrap').innerHTML = `<table><thead><tr><th>Doctor</th><th>Specialty</th><th>Email</th><th>Assigned Caseload</th></tr></thead><tbody>${
+    doctors.map(d => `<tr><td style="font-weight:700;color:var(--text-main);">${esc(d.name)}</td><td style="color:var(--cyan);">${esc(d.specialty)}</td>
+      <td class="mono">${esc(d.email)}</td><td><span class="pill pill-cyan">${patients.filter(p => p.doctorId === d.id).length} Patients</span></td></tr>`).join('')}</tbody></table>`;
+  $('#admin-markers-table-wrap').innerHTML = `<table><thead><tr><th>Marker ID</th><th>Disease Condition</th><th>Gene</th><th>Pattern</th><th>Severity</th><th>Action</th></tr></thead><tbody>${
+    markers.map(m => `<tr><td class="mono" style="color:var(--cyan);">${esc(m.id)}</td><td style="font-weight:700;color:var(--text-main);">${esc(m.disease)}</td>
+      <td class="mono">${esc(m.gene)}</td><td class="mono" style="font-size:11.5px;color:var(--teal);">${esc(m.pattern)}</td>
+      <td><span class="pill pill-${sevClass(m.severity)}">${esc(m.severity.toUpperCase())}</span></td>
+      <td><button class="btn btn-danger btn-sm" data-id="${esc(m.id)}" onclick="deleteMarker(this.dataset.id)">✕</button></td></tr>`).join('')}</tbody></table>`;
+}
+function openMarkerModal() { $('#form-marker').reset(); $('#modal-marker').classList.remove('hidden'); }
+function closeMarkerModal() { $('#modal-marker').classList.add('hidden'); }
+function submitMarkerForm(e) {
+  e.preventDefault();
+  const pattern = $('#form-m-pattern').value.trim().toUpperCase();
+  if (!/^[ACGT]{12,}$/.test(pattern)) { toast('Pattern must be at least 12 bases of A, C, G, T only.', 'high'); return false; }
+  const markers = getMarkers();
+  if (markers.some(m => m.pattern === pattern)) { toast('A marker with this exact pattern already exists.', 'high'); return false; }
+  markers.push({ id: 'CUSTOM_' + uid('').slice(1), disease: $('#form-m-disease').value.trim(), gene: $('#form-m-gene').value.trim().toUpperCase(),
+    mutation_type: $('#form-m-type').value, severity: $('#form-m-sev').value, pattern, synthetic: false });
+  setMarkers(markers.slice());
+  closeMarkerModal(); renderAdminView(); logEvent('Added custom marker to panel.');
+  toast('Genetic variant marker added to screening panel.');
+  return false;
+}
+function deleteMarker(id) {
+  setMarkers(getMarkers().filter(m => m.id !== id));
+  renderAdminView(); logEvent('Removed marker ' + id + ' from panel.'); toast('Marker removed from active panel.');
+}
+function exportAllSystemData() {
+  const data = { doctors: getDoctors().map(({ passcode, ...d }) => d), patients: getPatients(), markers: getMarkers(), scans: getScans(), exportedAt: new Date().toISOString() };
+  downloadFile(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }), 'vitae-guardians-database.json');
+}
+function confirmDatabaseReset() {
+  if (confirm('Reset entire Vitae Guardians database to original default state?')) {
+    try { Object.keys(localStorage).filter(k => k.startsWith(NS)).forEach(k => localStorage.removeItem(k)); } catch (e) {}
+    toast('Database reset complete.');
+    setTimeout(() => location.reload(), 400);
+  }
+}
+function downloadFile(blob, filename) {
+  const url = URL.createObjectURL(blob), a = document.createElement('a');
+  a.href = url; a.download = filename; document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+/* ---------- lightweight animated background (30 fps, paused when hidden) ---------- */
+(function initCanvas() {
+  const canvas = document.getElementById('bg-canvas'); if (!canvas) return;
+  const ctx = canvas.getContext('2d'); if (!ctx) return;
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let w = 0, h = 0;
+  const resize = () => { w = window.innerWidth; h = window.innerHeight; canvas.width = w; canvas.height = h; };
+  resize();
+  window.addEventListener('resize', debounce(resize, 200));
+  const nightC = ['#1fe6e6', '#22c9b8', '#6f7bff', '#4fd8ff'], dayC = ['#00b3b3', '#0e9c8c', '#5b57e0', '#2f8fd6'];
+  const parts = Array.from({ length: 34 }, () => ({ x: Math.random() * w, y: Math.random() * h, vx: (Math.random() - .5) * .5, vy: (Math.random() - .5) * .5, r: Math.random() * 2 + 1, c: (Math.random() * 4) | 0 }));
+  let step = 0, last = 0;
+  function frame(ts) {
+    requestAnimationFrame(frame);
+    if (document.hidden || ts - last < 33) return;
+    last = ts; step += 0.03;
+    ctx.clearRect(0, 0, w, h);
+    const day = document.body.classList.contains('day-mode');
+    const pal = day ? dayC : nightC, line = day ? 'rgba(11,34,48,0.10)' : 'rgba(31,230,230,0.14)', link = day ? '11,34,48' : '31,230,230';
+    ctx.lineWidth = 1.2;
+    for (let x = 0; x < w; x += 32) {
+      const y1 = h * 0.45 + Math.sin(x * 0.008 + step) * 60, y2 = h * 0.45 + Math.sin(x * 0.008 + step + Math.PI) * 60;
+      ctx.strokeStyle = line; ctx.beginPath(); ctx.moveTo(x, y1); ctx.lineTo(x, y2); ctx.stroke();
+      ctx.fillStyle = pal[0]; ctx.fillRect(x - 2, y1 - 2, 4, 4);
+      ctx.fillStyle = pal[2]; ctx.fillRect(x - 2, y2 - 2, 4, 4);
+    }
+    for (let i = 0; i < parts.length; i++) {
+      const p = parts[i];
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = w; else if (p.x > w) p.x = 0;
+      if (p.y < 0) p.y = h; else if (p.y > h) p.y = 0;
+      ctx.fillStyle = pal[p.c]; ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.2832); ctx.fill();
+      for (let j = i + 1; j < parts.length; j++) {
+        const q = parts[j], dx = p.x - q.x, dy = p.y - q.y, d2 = dx * dx + dy * dy;
+        if (d2 < 10000) { ctx.strokeStyle = `rgba(${link},${0.16 * (1 - d2 / 10000)})`; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke(); }
+      }
+    }
+  }
+  if (reduce) { frame(0); /* single static frame */ } else requestAnimationFrame(frame);
+})();
+
+/* ---------- theme ---------- */
+function redrawActiveCharts() {
+  if (currentView === 'dashboard' && currentDoctor) renderDashboard();
+  if (currentView === 'benchmarks') renderBenchmarkView(true);
+}
+function setTheme(mode) {
+  const isDay = mode === 'day';
+  document.body.classList.add('theme-switching');
+  document.body.classList.toggle('day-mode', isDay);
+  $('#theme-btn-day').classList.toggle('active', isDay);
+  $('#theme-btn-night').classList.toggle('active', !isDay);
+  try { localStorage.setItem('vg_theme', mode); } catch (e) {}
+  setTimeout(() => document.body.classList.remove('theme-switching'), 400);
+  redrawActiveCharts();
+}
+function initTheme() {
+  let saved = null;
+  try { saved = localStorage.getItem('vg_theme'); } catch (e) {}
+  if (!saved) saved = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'day' : 'night';
+  setTheme(saved);
+}
+window.addEventListener('resize', debounce(redrawActiveCharts, 250));
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closePatientModal(); closeMarkerModal(); }
+});
+
+/* ---------- bootstrap ---------- */
+(function bootstrap() {
+  purgeExpiredData();
+  initTheme();
+  const session = sget('session', null);
+  const doc = session && getDoctors().find(d => d.id === session.docId);
+  if (doc) { currentDoctor = doc; enterApp(); }
+  else setAuthMode('login');
+  setInterval(purgeExpiredData, 60 * 1000);
+})();
+
+</script>
+</body>
+</html>
